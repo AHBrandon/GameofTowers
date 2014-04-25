@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Game of Towers</title>
+		<meta charset="utf-8">
+		
+		<!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
+		<script type"text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<!-- <script type="text/javascript" src="Lab1Embed.js"></script> -->
+		
+		<!-- <script type="text/javascript">
+			var xrow = 40;
+			var Counter = 0;
+			var xpos;
+			$(document).ready(function(){
+				function DrawRect()
+				{
+					var canvas = $("#Lab1Canvas");
+					var context = canvas.get(0).getContext("2d");
+					
+					xpos = (xrow + Counter);
+					context.fillRect(xpos,40,40,20);
+					Counter++;
+					xrow = xrow + 40;
+					
+					setTimeout(DrawRect,1);
+				}
+							
+				setTimeout(DrawRect, 1)
+			});
+		</script> -->
+		
+		<script type="text/javascript">
+		$(document).ready(function()
+		{
+			var GameState =
+			{
+				SPLASH: 1,
+				TITLE: 2,
+				OPTIONS: 3,
+				CREDITS: 4,
+				GAME: 5,
+				LOSS: 6,
+				RESET: 7,
+				LVLCHANGE: 8,
+				EXIT: 9,
+				state: 0
+			};
+
+			//Set up the canvas and drawing surface
+			var canvas = document.querySelector("#canvas");
+			var drawingSurface = canvas.getContext("2d");
+
+			//Change the Game's State by pressing a Key
+			window.addEventListener("keydown", StateHandler, false);
+
+			function StateHandler(event)
+			{
+				//When a key is pressed, change the Game's State
+				GameState.state = GameState.state + 1;
+				if (GameState.state > 9)
+				{
+					GameState.state = 1;
+				}
+				
+				switch(GameState.state)
+				{
+					case 1:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the SPLASH state",50, 100);
+						alert("My game state is in the SPLASH state");
+					break;
+					
+					case 2:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the TITLE state",50,100);
+						alert("My game state is in the TITLE state");
+					break;
+					
+					case 3:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the OPTIONS state",50,100);
+						alert("My game state is in the OPTIONS state");
+					break;
+					
+					case 4:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the CREDITS state",50,100);
+						alert("My game state is in the CREDITS state");
+					break;
+					
+					case 5:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the GAME state",50,100);
+						alert("My game state is in the GAME state");
+					break;
+					
+					case 6:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the LOSS state",50,100);
+						alert("My game state is in the LOSS state");
+					break;
+					
+					case 7:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the RESET state",50,100);
+						alert("My game state is in the RESET state");
+					break;
+					
+					case 8:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the LVLCHANGE state",50,100);
+						alert("My game state is in the LVLCHANGE state");
+					break;
+					
+					case 9:
+						drawingSurface.font="20px Times Roman";
+						drawingSurface.fillText("My game state is in the EXIT state",50,100);
+						alert("My game state is in the EXIT state");
+					break;
+				}
+			}
+		});
+
+		</script>
+		
+	</head>
+	
+	<body>
+		<canvas id="canvas" width="800" height="600">
+			
+		</canvas>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+var gameTimer = object.create(TimerClass);
+gameTimer.time = 100;
+gameTimer.start();
+
+
+OR 
+
+
+function gameLoop()
+{
+	window.requestAnimaionFrame(gameLoop, canvases[0]);
+	update();
+	render();
+}
+
