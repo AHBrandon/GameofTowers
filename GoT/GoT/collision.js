@@ -9,33 +9,16 @@ function AARectToRectCollision(rect1, rect2)
 					magVx;
 	var overlapY = (rect1.halfHeight + rect2.halfHeight) -
 					magVy;
-	console.log ("hit");			
+	
 	if(overlapX > 0)
 	{
 		if(overlapY > 0)
 		{
-			if(overlapY > overlapX)
-			{
-				if(vx > 0)
-				{
-					rect1.x += overlapX;
-				}
-				else
-				{
-					rect1.x -= overlapX;
-				}
-			}
-			else
-			{
-				if(vy > 0)
-				{
-					rect1.y += overlapY;
-				}
-				else
-				{
-					rect1.y -= overlapY;
-				}
-			}
+			return true;
+			console.log ("hit");			
 		}
+		
 	}
+	else
+		return false;
 }

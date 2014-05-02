@@ -1,13 +1,17 @@
 //Bullets
 var bulletId = 0;
 
+
 var speed = 5;
-function bullet(attack, size, speed, x, y, eX, eY, damage)
+function bullet(attack, size, speed, x, y, eX, eY, damage, width, height, halfWidth, halfHeight)
 {
-	this.attack = attack;
 	this.size = size;
 	this.x = x;
 	this.y = y;
+	this.width = 17;
+	this.height = 18;
+	this.halfWidth = 8;
+	this.halfHeight = 9;
 	this.eX = eX;
 	this.eY = eY;
 	this.velocityX = 1;
@@ -20,7 +24,7 @@ var bulletList = [];
 
 function addBullet(attack, bsize, bspeed, x, y, eX, eY)
 {
-	bulletList[bulletId] = new bullet(attack, bsize, bspeed, x, y, eX, eY);
+	bulletList.push(new bullet(attack, bsize, bspeed, x, y, eX, eY));
 	bulletId += 1;
 }
 
