@@ -2,9 +2,14 @@
 var CANVAS_WIDTH = 1440;
 var CANVAS_HEIGHT = 900;
 var DragonID = 0;
+var angleX = 450;
+var angleY = 1000;
 //fireBalls
 var fireBallId = 0;
 var speed = 3;
+var fireBallDamage = 3;
+var fireBallVelocityX = 1;
+var fireBallVelocityY = 1;
 
 function Dragon(image, frameWidth, frameHeight, imageWidth, imageHeight, 
 				currentFrame, startFrame, numFrames, frameRate, loop, 
@@ -73,32 +78,33 @@ function updateDragon()
 	}
 }
 
-function fireBall(attack, size, speed, x, y, eX, eY, damage)
+function fireBall(x, y, eX, eY, damage, width, height, halfWidth, halfHeight)
 {
-	this.attack = attack;
-	this.size = size;
 	this.x = x;
 	this.y = y;
+	this.width = 55;
+	this.height = 77;
+	this.halfWidth = 28;
+	this.halfHeight = 39;
 	this.eX = eX;
 	this.eY = eY;
-	this.velocityX = 1;
-	this.velocityY = 1;
-	this.speed = speed;
-	this.damage = 5;
+	this.velocityX = fireBallVelocityX;
+	this.velocityY = fireBallVelocityY;
+	this.damage = fireBallDamage;
 }
 
 var fireBallList = [];
 
-function addfireBall(attack, bsize, bspeed, x, y, eX, eY)
+function addfireBall(x, y, eX, eY)
 {
-	fireBallList[fireBallId] = new fireBall(attack, bsize, bspeed, x, y, eX, eY);
+	fireBallList.push(new fireBall(x, y, eX, eY));
 	fireBallId += 1;
 }
 
 function updatefireBall(fireBall, dragon)
 {
-	var dx = (fireBall.eX + 450);
-	var dy = (fireBall.eY + 1000);
+	var dx = (fireBall.eX + angleX);
+	var dy = (fireBall.eY + angleY);
 	var mag = Math.sqrt(dx * dx + dy * dy);
 	fireBall.velocityX = (dx / mag) * speed;
 	fireBall.velocityY = (dy / mag) * speed;

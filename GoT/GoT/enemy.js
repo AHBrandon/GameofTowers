@@ -73,16 +73,12 @@ function updateDragon()
 	}
 }
 
-function fireBall(attack, size, speed, x, y, eX, eY, damage, width, height, halfWidth, halfHeight)
+function fireBall(attack, size, speed, x, y, eX, eY, damage)
 {
 	this.attack = attack;
 	this.size = size;
 	this.x = x;
 	this.y = y;
-	this.width = 55;
-	this.height = 77;
-	this.halfWidth = 28;
-	this.halfHeight = 39;
 	this.eX = eX;
 	this.eY = eY;
 	this.velocityX = 1;
@@ -95,7 +91,7 @@ var fireBallList = [];
 
 function addfireBall(attack, bsize, bspeed, x, y, eX, eY)
 {
-	fireBallList.push(new fireBall(attack, bsize, bspeed, x, y, eX, eY));
+	fireBallList[fireBallId] = new fireBall(attack, bsize, bspeed, x, y, eX, eY);
 	fireBallId += 1;
 }
 

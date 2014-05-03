@@ -7,7 +7,8 @@ $(document).ready(function()
 	var spriteAtlas = new Image();
 	var vx = 100;
 	var vy = 100;
-
+	var CANVAS_WIDTH = 800;
+	var CANVAS_HEIGHT = 600;
 	var time = 0;
 	var canvasWidth = canvas.width;
 	var canvasHeight = canvas.height;
@@ -54,48 +55,42 @@ $(document).ready(function()
 	
 	function drawFrame()
 	{
-		
+		requestAnimationFrame(drawFrame);
 		context.clearRect(0, 0, canvasWidth, canvasHeight);
 		context.drawImage(GameScrDay, 0, 0, 1440, 900, 0, 0, 1440, 900);
 		context.drawImage(Castle, 0, 0, 388, 370, 530, 632, 388, 370);
-		context.drawImage(wizard, 0, 0, 51, 35, 700, 623, 51, 35);
-		context.drawImage(imgDragon, 0, 0, 220, 104, 395, 200, 220, 104);
-		
-		for(var i = 0; i < bulletList.length; ++i)
+		//draw bullets
+		$.each(bulletList, function (index, bullet)
 		{
-			updateBullet(bulletList[i], wizard);
+			updateBullet(bullet, wizard);
 
-			context.drawImage(imgBullet, wizard.x, wizard.y, 17, 18, bulletList[i].x, bulletList[i].y, 17, 18);
-		}
+			context.drawImage(imgBullet, wizard.x, wizard.y, 17, 18, bullet.x, bullet.y, 17, 18);
+		});
 		
-		for(var i = 0; i < fireBallList.length; ++i)
+		context.drawImage(wizard, 0, 0, 51, 35, 700, 623, 51, 35);
+		//draw dragon
+		
+		$.each(EnemyList, function (index, Dragon)
+		{												//x    y
+			context.drawImage(imgDragon, 0, 0, 220, 104, 395, 200, 220, 104); 
+		});
+		
+		$.each(fireBallList, function (index, fireBall)
 		{
-			updatefireBall(fireBallList[i], imgDragon);
-			context.drawImage(imgFireBall, imgDragon.x, imgDragon.y, 55, 77, fireBallList[i].x, fireBallList[i].y, 55, 77);
-			
-		}
+			updatefireBall(fireBall, imgDragon);
+			context.drawImage(imgFireBall, imgDragon.x, imgDragon.y, 55, 77, fireBall.x, fireBall.y, 55, 77);
+		});
 		
-		
-		for(var i = 0; i < bulletList.length; ++i)
-		{
-			for (var j = 0; j < fireBallList.length; ++j)
-			{
-				if(AARectToRectCollision(bulletList[i], fireBallList[j]))
-				{
-					fireBallList.splice(j, 1);
-					j--;
-					bulletList.splice(i, 1);
-					i--;
-				}			
-			}
-		}
-		requestAnimationFrame(drawFrame);
 	}
-	
+	if(bullet.x && bullet.y === fireBall.x && fireBall.y)
+	{
+		contex.clearRect(0, 0, myCanvas.width, myCanvas.height);
+		console.log ("hit");
+	}
 	var interval = setInterval(onInterval, 3000);
 	function onInterval() 
-	{//tell the fire ball to start at the dragon's position and then target the castle, hard coded values for now because of errors...	
-		addfireBall(attack, 10, 2, 555, 250, 530, 632);	
+	{
+		addfireBall(attack, 10, 2, 555, 200, Castle.x, Castle.y);	//tell the fire ball to start at the dragon's position and then target the castle	
 	}
 	function Player()
 	{        
@@ -109,13 +104,12 @@ $(document).ready(function()
 		{
 			console.log("assets loaded");
 			addEnemy(imgDragon, 0, 0, 220, 104, 395, 445, 220, 104);
-			Player();
+			$(Player);
 		}
 	}
 
 	$(canvas).click( function (e)
 	{
-	console.log("click");
 		addBullet(attack, 10, 2, 700, 623, e.pageX, e.pageY);
 	});
 });
