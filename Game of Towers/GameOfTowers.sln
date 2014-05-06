@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91EA4A40-630B-43F3-87A8-9B65828DF95D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", "{063B5F06-246C-4239-92CF-4895EFB24406}"
+	ProjectSection(SolutionItems) = preProject
+		Javascript\AssetLoader.js = Javascript\AssetLoader.js
+		Javascript\GameObjectClass.js = Javascript\GameObjectClass.js
+		Javascript\GameStateClass.js = Javascript\GameStateClass.js
+		Javascript\Globals.js = Javascript\Globals.js
+		Javascript\LevelClass.js = Javascript\LevelClass.js
+		Javascript\MainMenuStateClass.js = Javascript\MainMenuStateClass.js
+		Javascript\MathUtils.js = Javascript\MathUtils.js
+		Javascript\PlatformEnemy.js = Javascript\PlatformEnemy.js
+		Javascript\PlayerClass.js = Javascript\PlayerClass.js
+		Javascript\RectClass.js = Javascript\RectClass.js
+		Javascript\SpriteAnimClass.js = Javascript\SpriteAnimClass.js
+		Javascript\State.js = Javascript\State.js
+		Javascript\TimerClass.js = Javascript\TimerClass.js
+		Javascript\VectorClass.js = Javascript\VectorClass.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSS", "CSS", "{F3CD1F74-0A7D-494C-9B1F-F541286068FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{DB00AF93-5285-467D-929E-4C6B6EB46B13}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{063B5F06-246C-4239-92CF-4895EFB24406} = {91EA4A40-630B-43F3-87A8-9B65828DF95D}
+		{F3CD1F74-0A7D-494C-9B1F-F541286068FB} = {91EA4A40-630B-43F3-87A8-9B65828DF95D}
+		{DB00AF93-5285-467D-929E-4C6B6EB46B13} = {91EA4A40-630B-43F3-87A8-9B65828DF95D}
+	EndGlobalSection
+EndGlobal
