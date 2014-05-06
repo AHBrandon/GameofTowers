@@ -30,8 +30,10 @@ function addBullet(x, y, eX, eY)
 
 function updateBullet(bullet, wizard)
 {
-	var dx = (bullet.eX - 700);	//angle it is shot at
-	var dy = (bullet.eY - 630);
+	var angleX = 700;
+	var angleY = 630;
+	var dx = (bullet.eX - angleX);	//angle it is shot at
+	var dy = (bullet.eY - angleY);
 	var mag = Math.sqrt(dx * dx + dy * dy);
 	bullet.velocityX = (dx / mag) * bulletSpeed;
 	bullet.velocityY = (dy / mag) * bulletSpeed;

@@ -13,8 +13,6 @@ $(document).ready(function()
 
 	var assetsLoaded = 0;
 	var loadedList = new Array();
-
-	var attack = $("#attack");
 	
 	var wizard = new Image();
 	wizard.src = "Sprites/wizard2.png";
@@ -127,7 +125,7 @@ $(document).ready(function()
 
 	$(canvas).click( function (e)
 	{
-	console.log("click");
+		console.log("click");	//test to see if the mouse is being used
 		addBullet(wizardXPos, wizardYPos, e.pageX, e.pageY);
 	});
 });

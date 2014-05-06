@@ -2,8 +2,8 @@
 var CANVAS_WIDTH = 1440;
 var CANVAS_HEIGHT = 900;
 var DragonID = 0;
-var angleX = 450;
-var angleY = 1000;
+var AirShipID = 1;
+var SeigeWeaponID = 2;
 //fireBalls
 var fireBallId = 0;
 var speed = 3;
@@ -12,6 +12,44 @@ var fireBallVelocityX = 1;
 var fireBallVelocityY = 1;
 
 function Dragon(image, frameWidth, frameHeight, imageWidth, imageHeight, 
+				currentFrame, startFrame, numFrames, frameRate, loop, 
+				isPlaying, x, y)
+{
+	this.image = image;
+	this.frameWidth = frameWidth;
+	this.frameHeight = frameHeight;
+	this.imageWidth = imageWidth;
+	this.imageHeight = imageHeight;
+	this.currentFrame = currentFrame;
+	this.startFrame = startFrame;
+	this.numFrames = numFrames;
+	this.frameRate = frameRate;
+	this.loop = loop;
+	this.isPlaying = isPlaying;
+	this.x = x;
+	this.y = y;
+}
+
+function AirShip(image, frameWidth, frameHeight, imageWidth, imageHeight, 
+				currentFrame, startFrame, numFrames, frameRate, loop, 
+				isPlaying, x, y)
+{
+	this.image = image;
+	this.frameWidth = frameWidth;
+	this.frameHeight = frameHeight;
+	this.imageWidth = imageWidth;
+	this.imageHeight = imageHeight;
+	this.currentFrame = currentFrame;
+	this.startFrame = startFrame;
+	this.numFrames = numFrames;
+	this.frameRate = frameRate;
+	this.loop = loop;
+	this.isPlaying = isPlaying;
+	this.x = x;
+	this.y = y;
+}
+
+function SeigeWeapon(image, frameWidth, frameHeight, imageWidth, imageHeight, 
 				currentFrame, startFrame, numFrames, frameRate, loop, 
 				isPlaying, x, y)
 {
@@ -39,6 +77,12 @@ function addEnemy(image, frameWidth, frameHeight, imageWidth, imageHeight,
 	EnemyList[DragonID] = new Dragon(image, frameWidth, frameHeight, imageWidth, imageHeight,
                   currentFrame, startFrame, numFrames, frameRate, loop, 
 				  isPlaying, x, y);
+	EnemyList[AirShipID] = new AirShip(image, frameWidth, frameHeight, imageWidth, imageHeight,
+			  currentFrame, startFrame, numFrames, frameRate, loop, 
+			  isPlaying, x, y);
+	EnemyList[SeigeWeaponID] = new SeigeWeapon(image, frameWidth, frameHeight, imageWidth, imageHeight,
+			  currentFrame, startFrame, numFrames, frameRate, loop, 
+			  isPlaying, x, y);
 	DragonID += 1;
 }
 
@@ -103,6 +147,8 @@ function addfireBall(x, y, eX, eY)
 
 function updatefireBall(fireBall, dragon)
 {
+	var angleX = 450;
+	var angleY = 1000;
 	var dx = (fireBall.eX + angleX);
 	var dy = (fireBall.eY + angleY);
 	var mag = Math.sqrt(dx * dx + dy * dy);
