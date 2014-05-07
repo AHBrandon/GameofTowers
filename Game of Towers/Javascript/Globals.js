@@ -19,11 +19,11 @@ var backGroundWidth = 1440;
 var backGroundHeight = 900;
 
 var castleWidth = 388;
-var castleHeight = 370;
+var castleHeight = 270;
 var castleXPos = 530;
 var castleYPos = 632;
 
-var dragonWidth = 220;
-var dragonHeight = 104;
+var dragonWidth = 188;
+var dragonHeight = 76;
 var dragonXPos = 395;
 var dragonYPos = 200;

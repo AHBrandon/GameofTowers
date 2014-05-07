@@ -1,140 +1,38 @@
-var PlayerClass = Object.create(GameObjectClass);
-PlayerClass.PLAYER_SPEED = 200;
-PlayerClass.inputVelocity = undefined;
-PlayerClass.baseInit = PlayerClass.init;
+var bulletId = 0;
+var bulletSpeed = 2;
+var velocityX = 1;
+var velocityY = 1;
+var damage = 5;
 
-PlayerClass.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight) 
-{
-
-    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				             frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
-    this.inputVelocity = Object.create(VectorClass);
-    this.inputVelocity.x = 0;
-    this.inputVelocity.y = 0;
-};
-
-PlayerClass.updateVelocity = function (keysPressed)
-{
-    this.inputVelocity.x = 0;
-    this.inputVelocity.y = 0;
-    for (var i = 0; i < keysPressed.length; ++i)
-    {
-        switch (keysPressed[i])
-        {
-            case UP:
-                this.jump();
-                //this.inputVelocity.y -= 1;
-                break;
-            case DOWN:
-                //this.inputVelocity.y += 1;
-                break;
-            case RIGHT:
-                this.inputVelocity.x += 1;
-                break;
-            case LEFT:
-                this.inputVelocity.x -= 1;
-                break;
-        }
-    }
-};
-
-PlayerClass.update = function (deltaTime)
-{
-
-    this.inputVelocity.normalize();
-    this.inputVelocity.scale(this.PLAYER_SPEED);
-    this.translate((this.vx + this.inputVelocity.x)
-								* deltaTime,
-                                (this.vy + this.inputVelocity.y)
-								* deltaTime);
-};
-
-PlayerClass.left = function () 
-{
-    return this.spriteAnim.rect.x;
-};
-
-PlayerClass.top = function () 
-{
-    return this.spriteAnim.rect.y;
-};
-
-PlayerClass.right = function () 
-{
-    return this.spriteAnim.rect.x +
-				this.spriteAnim.rect.width;
-};
-
-PlayerClass.bottom = function () 
-{
-        return this.spriteAnim.rect.y +
-				this.spriteAnim.rect.height;
+function bullet(x, y, eX, eY, damage, width, height, halfWidth, halfHeight) {
+    this.x = x;
+    this.y = y;
+    this.width = 17;
+    this.height = 18;
+    this.halfWidth = this.width / 2;
+    this.halfHeight = this.height / 2;
+    this.eX = eX;
+    this.eY = eY;
+    this.velocityX = velocityX;
+    this.velocityY = velocityY;
+    this.damage = damage;
 }
 
-/*{
-    PLAYER_SPEED: 200, // pixels per second
+var bulletList = [];
 
-    gameObject: undefined,
-    inputVelocity: undefined,
+function addBullet(x, y, eX, eY) {
+    bulletList.push(new bullet(x, y, eX, eY));
+    bulletId += 1;
+}
 
-    init: function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight) {
-        this.gameObject = Object.create(GameObjectClass);
-        this.gameObject.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
-        this.inputVelocity = Object.create(VectorClass);
-        this.inputVelocity.x = 0;
-        this.inputVelocity.y = 0;
-    },
-
-    updateVelocity: function (keysPressed) {
-        this.inputVelocity.x = 0;
-        this.inputVelocity.y = 0;
-        for (var i = 0; i < keysPressed.length; ++i) {
-            switch (keysPressed[i]) {
-                case UP:
-                    this.inputVelocity.y -= 1;
-                    break;
-                case DOWN:
-                    this.inputVelocity.y += 1;
-                    break;
-                case RIGHT:
-                    this.inputVelocity.x += 1;
-                    break;
-                case LEFT:
-                    this.inputVelocity.x -= 1;
-                    break;
-            }
-        }
-    },
-
-    update: function (deltaTime) {
-
-        this.inputVelocity.normalize();
-        this.inputVelocity.scale(this.PLAYER_SPEED);
-
-        this.gameObject.translate((this.gameObject.vx + this.inputVelocity.x)
-								* deltaTime,
-                                (this.gameObject.vy + this.inputVelocity.y)
-								* deltaTime);
-    },
-
-    left: function () {
-        return this.gameObject.spriteAnim.rect.x;
-    },
-
-    top: function () {
-        return this.gameObject.spriteAnim.rect.y;
-    },
-
-    right: function () {
-        return this.gameObject.spriteAnim.rect.x +
-				this.gameObject.spriteAnim.rect.width;
-    },
-
-    bottom: function () {
-        return this.gameObject.spriteAnim.rect.y +
-				this.gameObject.spriteAnim.rect.height;
-    }
-}*/
+function updateBullet(bullet, wizard) {
+    var angleX = 700;
+    var angleY = 630;
+    var dx = (bullet.eX - angleX);	//angle it is shot at
+    var dy = (bullet.eY - angleY);
+    var mag = Math.sqrt(dx * dx + dy * dy);
+    bullet.velocityX = (dx / mag) * bulletSpeed;
+    bullet.velocityY = (dy / mag) * bulletSpeed;
+    bullet.x += bullet.velocityX;
+    bullet.y += bullet.velocityY;
+}

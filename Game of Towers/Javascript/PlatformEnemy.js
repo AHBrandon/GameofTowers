@@ -1,6 +1,6 @@
 ﻿var PlatformEnemy = Object.create(GameObjectClass);
 
-PlatformEnemy.speed = ENEMY_SPEED;
+//PlatformEnemy.speed = ENEMY_SPEED;
 PlatformEnemy.isLeft = false; //if this is false then the dir is right
 PlatformEnemy.levelData; 
 PlatformEnemy.baseInit = PlatformEnemy.init;
