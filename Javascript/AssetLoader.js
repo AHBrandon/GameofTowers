@@ -86,7 +86,7 @@ $(document).ready(function () {
         context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
         context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
         context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
-
+        //gameScreen.appendChild(Canvas);
         for (var i = 0; i < bulletList.length; ++i)
         {
             updateBullet(bulletList[i], wizard);

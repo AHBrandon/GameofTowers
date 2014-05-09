@@ -1,3 +1,4 @@
+
 var bulletId = 0;
 var bulletSpeed = 2;
 var velocityX = 1;
