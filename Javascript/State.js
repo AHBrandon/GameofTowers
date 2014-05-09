@@ -1,11 +1,14 @@
 var States = 
 {
-	MAIN_MENU : 0,
-	GAME : 1,
-	END_GAME: 2,
-	OPTIONS: 3,
-	CREDITS: 4,
-	RESET: 5,
-	LVLCHANGE: 6,
-	EXIT: 7,
+    SPLASH: 0,
+    TITLE: 1,
+    OPTIONS: 2,
+    CREDITS: 3,
+    GAME: 4,
+    END_GAME: 5,
+    CREDITS: 6,
+    LOSS: 7,
+    RESET: 8,
+    LVLCHANGE: 9,
+    EXIT: 10,
 };
