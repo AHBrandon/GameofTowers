@@ -46,25 +46,27 @@ $(document).ready(function () {
     output.style.position = "absolute";
     output.style.top = CANVAS_HEIGHT - OUTPUT_HEIGHT + "px";
 
-    var currState = Object.create(MainMenuStateClass);
+    var currState = Object.create(SplashScreenStateClass);
 
     function mouseDownHandler(e) 
     {
         addBullet(wizardXPos, wizardYPos, e.pageX, e.pageY);
     }
-
+    
     function gameLoop()
     {
         window.requestAnimationFrame(gameLoop, Canvas);
         update();
         render();
     }
+
     gameLoop();
     addEventListener("mousedown", mouseDownHandler, false);
 
     var timer = 0;
 
     var previousTime = Date.now();
+
     function update()
     {
         var deltaTime = (Date.now() - previousTime) / 1000;
