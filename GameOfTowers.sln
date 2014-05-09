@@ -8,18 +8,26 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", "{063B5F06-246C-4239-92CF-4895EFB24406}"
 	ProjectSection(SolutionItems) = preProject
 		Javascript\AssetLoader.js = Javascript\AssetLoader.js
+		Javascript\Collision.js = Javascript\Collision.js
+		Javascript\CreditsStateClass.js = Javascript\CreditsStateClass.js
+		Javascript\Enemy.js = Javascript\Enemy.js
+		Javascript\ExitStateClass.js = Javascript\ExitStateClass.js
 		Javascript\GameObjectClass.js = Javascript\GameObjectClass.js
 		Javascript\GameStateClass.js = Javascript\GameStateClass.js
 		Javascript\Globals.js = Javascript\Globals.js
 		Javascript\LevelClass.js = Javascript\LevelClass.js
-		Javascript\ExitStateClass.js = Javascript\ExitStateClass.js
+		Javascript\LossStateClass.js = Javascript\LossStateClass.js
+		Javascript\MainMenuStateClass.js = Javascript\MainMenuStateClass.js
 		Javascript\MathUtils.js = Javascript\MathUtils.js
+		Javascript\OptionStateClass.js = Javascript\OptionStateClass.js
 		Javascript\PlatformEnemy.js = Javascript\PlatformEnemy.js
 		Javascript\PlayerClass.js = Javascript\PlayerClass.js
 		Javascript\RectClass.js = Javascript\RectClass.js
+		Javascript\SplashScreenStateClass.js = Javascript\SplashScreenStateClass.js
 		Javascript\SpriteAnimClass.js = Javascript\SpriteAnimClass.js
 		Javascript\State.js = Javascript\State.js
 		Javascript\TimerClass.js = Javascript\TimerClass.js
+		Javascript\TitleStateClass.js = Javascript\TitleStateClass.js
 		Javascript\VectorClass.js = Javascript\VectorClass.js
 	EndProjectSection
 EndProject
