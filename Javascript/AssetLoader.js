@@ -46,7 +46,7 @@ $(document).ready(function () {
     output.style.position = "absolute";
     output.style.top = CANVAS_HEIGHT - OUTPUT_HEIGHT + "px";
 
-    //var currState = Object.create(SplashScreenStateClass);
+    var currState = Object.create(SplashScreenStateClass);
 
     var bulletList = [];
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
         context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
         context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
         context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
-       gameScreen.appendChild(Canvas);
+        gameScreen.appendChild(Canvas);
         for (var i = 0; i < bulletList.length; ++i) {
             bulletList[i].updateBullet(wizard);
             context.drawImage(imgBullet, wizard.x, wizard.y, bulletWidth, bulletHeight, bulletList[i].spriteAnim.rect.x, bulletList[i].spriteAnim.rect.y, bulletWidth, bulletHeight);
