@@ -1,39 +1,18 @@
+var Bullet = Object.create(Projectile);
+Bullet.bulletId = 0;
+Bullet.bulletSpeed = 2;
+Bullet.damage = 5;
 
-var bulletId = 0;
-var bulletSpeed = 2;
-var velocityX = 1;
-var velocityY = 1;
-var damage = 5;
+Bullet.updateBullet = function (wizard) {
+    var originX = wizardXPos;
+    var originY = wizardYPos;
+    var directionX = (this.targetX - originX);
+    var directionY = (this.targetY - originY);
+    var mag = Math.sqrt(directionX * directionX + directionY * directionY);
 
-function bullet(x, y, eX, eY, damage, width, height, halfWidth, halfHeight) {
-    this.x = x;
-    this.y = y;
-    this.width = 17;
-    this.height = 18;
-    this.halfWidth = this.width / 2;
-    this.halfHeight = this.height / 2;
-    this.eX = eX;
-    this.eY = eY;
-    this.velocityX = velocityX;
-    this.velocityY = velocityY;
-    this.damage = damage;
-}
-
-var bulletList = [];
-
-function addBullet(x, y, eX, eY) {
-    bulletList.push(new bullet(x, y, eX, eY));
-    bulletId += 1;
-}
-
-function updateBullet(bullet, wizard) {
-    var angleX = 700;
-    var angleY = 630;
-    var dx = (bullet.eX - angleX);	//angle it is shot at
-    var dy = (bullet.eY - angleY);
-    var mag = Math.sqrt(dx * dx + dy * dy);
-    bullet.velocityX = (dx / mag) * bulletSpeed;
-    bullet.velocityY = (dy / mag) * bulletSpeed;
-    bullet.x += bullet.velocityX;
-    bullet.y += bullet.velocityY;
+    if (mag > 0) {
+        var vx = (directionX / mag) * this.bulletSpeed;
+        var vy = (directionY / mag) * this.bulletSpeed;
+        this.translate(vx, vy);
+    }
 }
