@@ -47,7 +47,8 @@ $(document).ready(function () {
     output.style.top = CANVAS_HEIGHT - OUTPUT_HEIGHT + "px";
 
     var currState = Object.create(SplashScreenStateClass);
-
+    
+    addEventListener("click", mouseDownHandler, false);
     var bulletList = [];
 
     function mouseDownHandler(e) {
@@ -67,7 +68,6 @@ $(document).ready(function () {
     }
 
     gameLoop();
-    addEventListener("mousedown", mouseDownHandler, false);
 
     var timer = 0;
 
@@ -87,32 +87,25 @@ $(document).ready(function () {
         }
     }
 
-    function render()
-    {
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-        context.drawImage(backgroundImage, 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
-        context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
-        context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
-        context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
-        gameScreen.appendChild(Canvas);
+    function updateWizardAttack() {
         for (var i = 0; i < bulletList.length; ++i) {
             bulletList[i].updateBullet(wizard);
             context.drawImage(imgBullet, wizard.x, wizard.y, bulletWidth, bulletHeight, bulletList[i].spriteAnim.rect.x, bulletList[i].spriteAnim.rect.y, bulletWidth, bulletHeight);
         }
+    }
 
-        for (var i = 0; i < fireBallList.length; ++i)
-        {
+    function updateDragonAttack() {
+        for (var i = 0; i < fireBallList.length; ++i) {
             updatefireBall(fireBallList[i], imgDragon);
             context.drawImage(imgFireBall, imgDragon.x, imgDragon.y, fireBallWidth, fireBallHeight, fireBallList[i].x, fireBallList[i].y, fireBallWidth, fireBallHeight);
 
         }
+    }
 
-        for (var i = 0; i < bulletList.length; ++i)
-        {
-            for (var j = 0; j < fireBallList.length; ++j)
-            {
-                if (AARectToRectCollision(bulletList[i], fireBallList[j]))
-                {
+    function checkCollision() {
+        for (var i = 0; i < bulletList.length; ++i) {
+            for (var j = 0; j < fireBallList.length; ++j) {
+                if (AARectToRectCollision(bulletList[i].collisionRect, fireBallList[j].collisionRect)) {
                     fireBallList.splice(j, 1);
                     j--;
                     bulletList.splice(i, 1);
@@ -122,6 +115,28 @@ $(document).ready(function () {
         }
     }
 
+    function drawCanvas() {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(backgroundImage, 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
+        context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
+        context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
+        context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
+    }
+
+    function render() {
+        drawCanvas();
+
+        gameScreen.appendChild(Canvas);
+
+        updateWizardAttack();
+
+        updateDragonAttack();
+
+        //doesn't work yet
+        //checkCollision();
+    }
+
+    //test code to show what the dragon will do
     var interval = setInterval(onInterval, 3000);	//every three seconds
     function onInterval() {//tell the fire ball to start at the dragon's position and then target the castle, hard coded values for now because of errors...	
         addfireBall(555, 250, 530, 632);
