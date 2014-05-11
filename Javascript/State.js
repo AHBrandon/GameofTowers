@@ -10,4 +10,8 @@ var States =
     RESET: 7,
     LVLCHANGE: 8,
     EXIT: 9,
+    DEFAULT: 10,
+    INACTIVE: 11,
+    INVULNERABLE: 12,
+    DEAD: 13,
 };

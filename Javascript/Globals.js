@@ -3,6 +3,10 @@ var DOWN = 40;
 var RIGHT = 39;
 var LEFT = 37;
 
+var PLAYER_START_HEALTH = 50;
+var PLAYER_FLASH_LENGTH = 3;
+var PLAYER_DEATH_TIME = 3;
+var PLAYER_DEAD_FRAME_INDEX;
 
 var wizardWidth = 51;
 var wizardHeight = 35;

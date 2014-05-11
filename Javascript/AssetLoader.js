@@ -1,5 +1,6 @@
 // JavaScript source code
-$(document).ready(function () {
+$(document).ready(function ()
+{
     var canvas = document.getElementById("Canvas");
     var context = canvas.getContext("2d");
     var canvasWidth = canvas.width;
@@ -51,7 +52,8 @@ $(document).ready(function () {
     addEventListener("click", mouseDownHandler, false);
     var bulletList = [];
 
-    function mouseDownHandler(e) {
+    function mouseDownHandler(e)
+    {
         var newBullet = Object.create(Bullet);
 
         newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
