@@ -31,3 +31,25 @@ var dragonWidth = 188;
 var dragonHeight = 76;
 var dragonXPos = 395;
 var dragonYPos = 200;
+
+var timeXPos = 7;
+var timeYPos = 724;
+
+var enemiesRemaining = 0;
+var enemiesRemainingXPos = 7;
+var enemiesRemainingYPos = 697;
+
+var health = 0;
+var healthXPos = 7;
+var healthYPos = 670;
+
+var wave = 0;
+var waveXPos = 7;
+var waveYPos = 751;
+
+var powerUpX = 7;
+var powerUpY = 778;
+var powerUpWidth = 50;
+var powerUpHeight = 50;
+
+

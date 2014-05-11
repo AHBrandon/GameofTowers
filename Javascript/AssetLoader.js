@@ -41,6 +41,16 @@ $(document).ready(function ()
     imgFireBall.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(imgFireBall);
 
+    var imgHealth = new Image();
+    imgHealth.src = "Assets/Sprites/HealthRestore.png";
+    imgHealth.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(imgHealth);
+
+    var imgDamage = new Image();
+    imgDamage.src = "Assets/Sprites/DamagePowerUp.png";
+    imgDamage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(imgDamage);
+
     var gameScreen = document.getElementById("gameScreen");
 
     var output = document.getElementById("output");
@@ -50,7 +60,11 @@ $(document).ready(function ()
     var currState = Object.create(SplashScreenStateClass);
     
     addEventListener("click", mouseDownHandler, false);
+
     var bulletList = [];
+
+    var timeCounter = Object.create(TimerClass);
+
 
     function mouseDownHandler(e)
     {
@@ -119,11 +133,24 @@ $(document).ready(function ()
 
     function drawCanvas() {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.font = "20px Verdana";
         context.drawImage(backgroundImage, 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
         context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
         context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
         context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
+        context.fillText("Health: " + health, healthXPos, healthYPos);
+        context.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
+        context.fillText("Wave: " + wave, waveXPos, waveYPos);
+        context.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+        context.stroke();
+
+        //to show what the power up will look like when the player gets one. 
+        //A blank rectangle is drawn if the player doesn't have a power up.
+        context.drawImage(imgHealth, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+        context.fillText("Time: " + timeCounter.time, timeXPos, timeYPos);
     }
+
+    timeCounter.start();
 
     function render() {
         drawCanvas();
