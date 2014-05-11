@@ -10,8 +10,8 @@ var PLAYER_DEAD_FRAME_INDEX;
 
 var wizardWidth = 51;
 var wizardHeight = 35;
-var wizardXPos = 700;
-var wizardYPos = 623;
+var wizardXPos = 710;
+var wizardYPos = 600;
 
 var bulletWidth = 17;
 var bulletHeight = 18;
