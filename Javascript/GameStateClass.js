@@ -38,7 +38,7 @@ var GameStateClass =
 
         this.gameObjects = new Array();
         this.player = Object.create(PlayerClass);
-        //this.gameObjects.push(this.player);
+        this.gameObjects.push(this.player);
 
         this.level = Object.create(LevelClass);
         this.level.init(assets[SPRITE_ATLAS], 0, 0, 1800, 1396, id);
