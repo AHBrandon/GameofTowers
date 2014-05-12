@@ -57,11 +57,14 @@ $(document).ready(function ()
     output.style.position = "absolute";
     output.style.top = CANVAS_HEIGHT - OUTPUT_HEIGHT + "px";
 
-    var currState = Object.create(SplashScreenStateClass);
+    var currState = Object.create(MainMenuStateClass);
+
+    //var currState = Object.create(SplashScreenStateClass);
     
     addEventListener("click", mouseDownHandler, false);
 
     var bulletList = [];
+    var fireBallList = [];
 
     var timeCounter = Object.create(TimerClass);
 
@@ -76,6 +79,7 @@ $(document).ready(function ()
     }
 
     
+
     function gameLoop()
     {
         window.requestAnimationFrame(gameLoop, Canvas);
@@ -131,6 +135,11 @@ $(document).ready(function ()
         }
     }
 
+    //Increment time
+    timeCounter.tick = function () {
+        this.time++;
+    };
+
     function drawCanvas() {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.font = "20px Verdana";
@@ -147,7 +156,7 @@ $(document).ready(function ()
         //to show what the power up will look like when the player gets one. 
         //A blank rectangle is drawn if the player doesn't have a power up.
         context.drawImage(imgHealth, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        context.fillText("Time: " + timeCounter.time, timeXPos, timeYPos);
+        context.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
     }
 
     timeCounter.start();
@@ -168,7 +177,12 @@ $(document).ready(function ()
     //test code to show what the dragon will do
     var interval = setInterval(onInterval, 3000);	//every three seconds
     function onInterval() {//tell the fire ball to start at the dragon's position and then target the castle, hard coded values for now because of errors...	
-        addfireBall(555, 250, 530, 632);
+       // addfireBall(555, 250, 530, 632);
+        var newFireBall = Object.create(FireBall);
+
+        newFireBall.init(imgFireBall, dragonXPos, dragonYPos, dragonWidth, dragonWidth, 1, 1,
+                        100, dragonWidth, dragonWidth, castleXPos, castleYPos);
+        fireBallList.push(newFireBall);
     }
 
     function assetLoaded(event)
