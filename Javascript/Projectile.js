@@ -2,7 +2,7 @@ var Projectile = Object.create(GameObjectClass);
 Projectile.projectileId = 0;
 Projectile.projectileSpeed = 0;
 Projectile.baseInit = Projectile.init;
-//Projectile.projectileList = [];
+
 
 Projectile.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
 				            frameRate, collisionWidth, collisionHeight, targetX, targetY) {
@@ -14,7 +14,7 @@ Projectile.init = function (image, x, y, frameWidth, frameHeight, startFrame, nu
     this.collisionRect.init(x, y, collisionWidth, collisionHeight, 0);
 }
 
-
+//update the projectile on the canvas
 updateProjectile = function (projectile, image) {
     var originX = image.x;
     var originY = image.y;

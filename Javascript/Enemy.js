@@ -1,145 +1,130 @@
-//Dragon
-var CANVAS_WIDTH = 1440;
-var CANVAS_HEIGHT = 900;
-var DragonID = 0;
-var AirShipID = 1;
-var SeigeWeaponID = 2;
-//fireBalls
-var fireBallId = 0;
-var speed = 3;
-var fireBallDamage = 3;
-var fireBallVelocityX = 1;
-var fireBallVelocityY = 1;
+// JavaScript source code
+var Enemy = Object.create(Character);
+Enemy.baseInit = Enemy.init;
+Enemy.state = undefined;
+Enemy.isPlaying = true;
+Enemy.loop = true;
+Enemy.Attack_timer = 0;
 
-function Dragon(image, frameWidth, frameHeight, imageWidth, imageHeight,
-				currentFrame, startFrame, numFrames, frameRate, loop,
-				isPlaying, x, y) {
-    this.image = image;
-    this.frameWidth = frameWidth;
-    this.frameHeight = frameHeight;
-    this.imageWidth = imageWidth;
-    this.imageHeight = imageHeight;
-    this.currentFrame = currentFrame;
-    this.startFrame = startFrame;
-    this.numFrames = numFrames;
-    this.frameRate = frameRate;
-    this.loop = loop;
-    this.isPlaying = isPlaying;
-    this.x = x;
-    this.y = y;
-}
+Enemy.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				           frameRate, collisionWidth, collisionHeight, targetX, targetY) {
+    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				  frameRate, collisionWidth, collisionHeight, targetX, targetY);
 
-function AirShip(image, frameWidth, frameHeight, imageWidth, imageHeight,
-				currentFrame, startFrame, numFrames, frameRate, loop,
-				isPlaying, x, y) {
-    this.image = image;
-    this.frameWidth = frameWidth;
-    this.frameHeight = frameHeight;
-    this.imageWidth = imageWidth;
-    this.imageHeight = imageHeight;
-    this.currentFrame = currentFrame;
-    this.startFrame = startFrame;
-    this.numFrames = numFrames;
-    this.frameRate = frameRate;
-    this.loop = loop;
-    this.isPlaying = isPlaying;
-    this.x = x;
-    this.y = y;
-}
+    this.spriteAnim = Object.create(SpriteAnimClass);
+    this.spriteAnim.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames, 1000, 0, 0);
+    this.collisionRect = Object.create(RectClass);
+    this.collisionRect.init(x, y, collisionWidth, collisionHeight, 0);
 
-function SeigeWeapon(image, frameWidth, frameHeight, imageWidth, imageHeight,
-				currentFrame, startFrame, numFrames, frameRate, loop,
-				isPlaying, x, y) {
-    this.image = image;
-    this.frameWidth = frameWidth;
-    this.frameHeight = frameHeight;
-    this.imageWidth = imageWidth;
-    this.imageHeight = imageHeight;
-    this.currentFrame = currentFrame;
-    this.startFrame = startFrame;
-    this.numFrames = numFrames;
-    this.frameRate = frameRate;
-    this.loop = loop;
-    this.isPlaying = isPlaying;
-    this.x = x;
-    this.y = y;
-}
+    this.state = State.DEFAULT;
+    this.health = 0;
+};
 
-var EnemyList = [];
 
-function addEnemy(image, frameWidth, frameHeight, imageWidth, imageHeight,
-                  currentFrame, startFrame, numFrames, frameRate, loop,
-				  isPlaying, x, y) {
-    EnemyList[DragonID] = new Dragon(image, frameWidth, frameHeight, imageWidth, imageHeight,
-                  currentFrame, startFrame, numFrames, frameRate, loop,
-				  isPlaying, x, y);
-    EnemyList[AirShipID] = new AirShip(image, frameWidth, frameHeight, imageWidth, imageHeight,
-			  currentFrame, startFrame, numFrames, frameRate, loop,
-			  isPlaying, x, y);
-    EnemyList[SeigeWeaponID] = new SeigeWeapon(image, frameWidth, frameHeight, imageWidth, imageHeight,
-			  currentFrame, startFrame, numFrames, frameRate, loop,
-			  isPlaying, x, y);
-    DragonID += 1;
-}
+Enemy.update = function (deltaTime)
+{
 
-function updateDragon() {
-    if (this.isPlaying) {
-        //console.log(this.currentFrame);
-        this.currentFrame++;
-        this.x += vx;
+    switch (this.state)
+    {
+        case States.DEFAULT:
+            {
+                if (this.isPlaying) {
+                    this.currentFrame++;
+                    this.x += vx;
 
-        if (this.x > CANVAS_WIDTH) {
-            vx = -vx;
-        }
-        if (this.x < 0) {
-            vx = -vx;
-        }
+                    if (this.x > CANVAS_WIDTH)
+                    {
+                        vx = -vx;
+                    }
+                    if (this.x < 0) {
+                        vx = -vx;
+                    }
 
-        if (this.currentFrame >= this.numFrames) {
-            if (this.loop) {
-                this.currentFrame = 0;
+                    if (this.currentFrame >= this.numFrames)
+                    {
+                        if (this.loop)
+                        {
+                            this.currentFrame = 0;
+                        }
+                        else {
+                            this.isPlaying = false;
+                            this.currentFrame--;
+                        }
+                    }
+
+                    var self = this;
+                    setTimeout(function () { self.updateAnimation(); }, this.frameRate);
+
+                }
             }
-            else {
-                this.isPlaying = false;
-                this.currentFrame--;
+            break;
+      
+        case States.DEAD:
+            {
+                //remove the enemy from the array list.
             }
-        }
 
-        var self = this;
-        setTimeout(function () { self.updateAnimation(); }, this.frameRate);
-
+            break;
     }
+};
+
+Enemy.setDefaultState = function ()
+{
+    this.state = States.DEFAULT;
+    clearTimeout(this.toggleAlphaTimer);
+    this.spriteAnim.alpha = 1;
 }
 
-function fireBall(x, y, eX, eY, damage, width, height, halfWidth, halfHeight) {
-    this.x = x;
-    this.y = y;
-    this.width = 55;
-    this.height = 77;
-    this.halfWidth = 28;
-    this.halfHeight = 39;
-    this.eX = eX;
-    this.eY = eY;
-    this.velocityX = fireBallVelocityX;
-    this.velocityY = fireBallVelocityY;
-    this.damage = fireBallDamage;
+Enemy.removeFromGame = function ()
+{
+    this.state = States.INACTIVE;
 }
 
-var fireBallList = [];
+Enemy.applyDamage = function (amount)
+{
+    if (this.state == States.INVULNERABLE)
+    {
+        console.log("Can't touch this!!! Enemy invulnerable");
+        return;
+    }
 
-function addfireBall(x, y, eX, eY) {
-    fireBallList.push(new fireBall(x, y, eX, eY));
-    fireBallId += 1;
-}
+    this.health -= amount;
 
-function updatefireBall(fireBall, dragon) {
-    var angleX = 450;
-    var angleY = 1000;
-    var dx = (fireBall.eX + angleX);
-    var dy = (fireBall.eY + angleY);
-    var mag = Math.sqrt(dx * dx + dy * dy);
-    fireBall.velocityX = (dx / mag) * speed;
-    fireBall.velocityY = (dy / mag) * speed;
-    fireBall.x += fireBall.velocityX;
-    fireBall.y += fireBall.velocityY;
+    if (this.health <= 0)
+    {
+        this.state = States.DEAD;
+        this.spriteAnim.startFrame = Enemy_DEAD_FRAME_INDEX;
+        this.spriteAnim.stop(true);
+        this.spriteAnim.play(true);
+        var self = this;
+        setTimeout(function () { self.removeFromGame(); }, ENEMY_DEATH_TIME);
+    }
+    else
+    {
+        this.state = States.INVULNERABLE;
+        var self = this;
+        setTimeout(function () { self.setDefaultState(); }, ENEMY_INVULNERABLE_TIME);
+        this.spriteAnim.alpha = 0;
+        this.toggleAlphatimer = setTimeout(function () { self.toggleAlpha(); }, ENEMY_FLASH_LENGTH);
+    }
+};
+
+Enemy.left = function ()
+{
+    return this.spriteAnim.rect.x;
+};
+
+Enemy.top = function ()
+{
+    return this.spriteAnim.rect.y;
+};
+
+Enemy.right = function ()
+{
+    return this.spriteAnim.rect.x + this.spriteAnim.rect.width;
+};
+
+Enemy.bottom = function ()
+{
+    return this.spriteAnim.rect.y + this.spriteAnim.rect.height;
 }
