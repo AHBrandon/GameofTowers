@@ -7,20 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", "{063B5F06-246C-4239-92CF-4895EFB24406}"
 	ProjectSection(SolutionItems) = preProject
+		Airship.js = Airship.js
 		Javascript\AssetLoader.js = Javascript\AssetLoader.js
-		Javascript\Bolt.js = Javascript\Bolt.js
-		Javascript\Bomb.js = Javascript\Bomb.js
-		Javascript\Bullet.js = Javascript\Bullet.js
-		character.js = character.js
+		Ballista.js = Ballista.js
 		Bolt.js = Bolt.js
 		Bomb.js = Bomb.js
 		Javascript\Bullet.js = Javascript\Bullet.js
+		character.js = character.js
 		Javascript\Collision.js = Javascript\Collision.js
 		Javascript\CreditsStateClass.js = Javascript\CreditsStateClass.js
+		Dragon.js = Dragon.js
 		Enemy.js = Enemy.js
-		Javascript\oldEnemy.js = Javascript\oldEnemy.js
 		Javascript\ExitStateClass.js = Javascript\ExitStateClass.js
-		Javascript\FireBall.js = Javascript\FireBall.js
 		FireBall.js = FireBall.js
 		Javascript\GameObjectClass.js = Javascript\GameObjectClass.js
 		Javascript\GameStateClass.js = Javascript\GameStateClass.js
@@ -29,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", 
 		Javascript\LossStateClass.js = Javascript\LossStateClass.js
 		Javascript\MainMenuStateClass.js = Javascript\MainMenuStateClass.js
 		Javascript\MathUtils.js = Javascript\MathUtils.js
+		Javascript\oldEnemy.js = Javascript\oldEnemy.js
 		Javascript\OptionStateClass.js = Javascript\OptionStateClass.js
 		Javascript\PlatformEnemy.js = Javascript\PlatformEnemy.js
 		Player.js = Player.js
 		Javascript\PlayerClass.js = Javascript\PlayerClass.js
-		Javascript\Projectile.js = Javascript\Projectile.js
 		Projectile.js = Projectile.js
 		Javascript\RectClass.js = Javascript\RectClass.js
 		Javascript\SplashScreenStateClass.js = Javascript\SplashScreenStateClass.js
@@ -45,6 +43,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSS", "CSS", "{F3CD1F74-0A7D-494C-9B1F-F541286068FB}"
+	ProjectSection(SolutionItems) = preProject
+		CSS\canvas.css = CSS\canvas.css
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{DB00AF93-5285-467D-929E-4C6B6EB46B13}"
 EndProject

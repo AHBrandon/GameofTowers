@@ -4,6 +4,7 @@ Enemy.baseInit = Enemy.init;
 Enemy.state = undefined;
 Enemy.isPlaying = true;
 Enemy.loop = true;
+Enemy.Attack_timer = 0;
 
 Enemy.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
 				           frameRate, collisionWidth, collisionHeight, targetX, targetY) {
