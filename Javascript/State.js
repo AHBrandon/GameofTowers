@@ -14,4 +14,5 @@ var States =
     INACTIVE: 11,
     INVULNERABLE: 12,
     DEAD: 13,
+    HOWTO: 14,
 };

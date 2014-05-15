@@ -1,8 +1,8 @@
 // JavaScript source code
 $(document).ready(function ()
 {
-    //var canvas = document.getElementById("Canvas");
-    //var context = canvas.getContext("2d");
+    var canvas = document.getElementById("Canvas");
+    var context = canvas.getContext("2d");
     //var canvasWidth = canvas.width;
     //var canvasHeight = canvas.height;
     var OUTPUT_HEIGHT = 20;
@@ -87,6 +87,21 @@ $(document).ready(function ()
     quitImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(quitImage);
 
+    var howToBackGround = new Image();
+    howToBackGround.src = "Assets/BGs/HowtoScreen.png";
+    howToBackGround.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(howToBackGround);
+
+    var menuImage = new Image();
+    menuImage.src = "Assets/BGs/menu.png";
+    menuImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(menuImage);
+
+    var creditsImage = new Image();
+    creditsImage.src = "Assets/BGs/CreditsPage.png";
+    creditsImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(creditsImage);
+
     var gameScreen = document.getElementById("gameScreen");
 
     var output = document.getElementById("output");
@@ -118,6 +133,7 @@ $(document).ready(function ()
 
     var player = Object.create(Player);
     //player.init(wizard, wizardXPos, wizardYPos, wizardWidth, wizardHeight, 1, 1, 100, wizardWidth, wizardHeight, wizardXPos, wizardYPos);
+    //var playerAttack = object.create(Bullet);
 
     var keysPressed = new Array();
     window.addEventListener("keydown", function (event)
@@ -225,10 +241,10 @@ $(document).ready(function ()
 
 	//timer check to move to another state.
         if (timer > 3) 
-	{
+        {
             timer = -999999; //test hack
             currState = Object.create(MainMenuStateClass);
-	    gameState = States.TITLE;
+            gameState = States.TITLE;
             currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
         }
 		
@@ -253,29 +269,68 @@ $(document).ready(function ()
                     if ((mousePos.y > playYPos) && (mousePos.y < (playYPos + playHeight)))
                     {
                         currState = Object.create(PlayGameStateClass);
-			gameState = States.GAME;
+                        gameState = States.GAME;
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
-		
-            break;
-			
-            case States.GAME:
-            //update your game object
-	    //this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
-	    //position of mouse clicks.
-	    
-            break;
-			
-            case States.END_GAME:
-            //update the end game object
-            break;
-        }
-    }
 
-    function hud()
-    {
-  
+                if ((mousePos.x > howToXPos) && (mousePos.x < (howToXPos + howToWidth)))
+                {
+                    if ((mousePos.y > howToYPos) && (mousePos.y < (howToYPos + howToHeight)))
+                    {
+                        currState = Object.create(HowToStateClass);
+                        gameState = States.HOWTO;
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
+                    }
+                }
+                break;
+
+                if ((mousePos.x > creditsXPos) && (mousePos.x < (creditsXPos + creditsWidth)))
+                {
+                    if ((mousePos.y > creditsYPos) && (mousePos.y < (creditsYPos + creditsHeight)))
+                    {
+                        currState = Object.create(CreditsStateClass);
+                        gameState = States.CREDITS;
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
+                    }
+                }
+                break;
+
+            case States.HOWTO:
+                if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth)))
+                {
+                    if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight)))
+                    {
+                        currState = Object.create(MainMenuStateClass);
+                        gameState = States.TITLE;
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
+                    }
+                }
+                break;
+                
+            case States.CREDITS:
+                if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth))) {
+                    if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight))) {
+                        currState = Object.create(MainMenuStateClass);
+                        gameState = States.TITLE;
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
+                    }
+                }
+                break;
+
+                case States.GAME:
+                    //update your game object
+                    //this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
+                    //position of mouse clicks.
+                    var newBullet = Object.create(Bullet);
+
+                    newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
+                                    100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
+                    bulletList.push(newBullet);
+
+                break;
+            
+        }
     }
 
     function updateWizardAttack() {
@@ -310,7 +365,7 @@ $(document).ready(function ()
 	{
         var currContext = canvases[0].getContext("2d");
         currContext.clearRect(0, 0, canvasWidth, canvasHeight);
-
+        updateWizardAttack();
         currState.render(currContext);
     }
 
@@ -327,5 +382,6 @@ $(document).ready(function ()
     {
         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
         gameLoop();
+        
     }
 });

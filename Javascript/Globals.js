@@ -89,4 +89,18 @@ var quitYPos = 552;
 var quitWidth = 204;
 var quitHeight = 83;
 
+var howToPlayScreen = 13;
+var howToWidth = 1440;
+var howToHeight = 900;
+
+var mainMenuImage = 14;
+var menuXPos = 800;
+var menuYPos = 656;
+var menuTextWidth = 461;
+var menuTextHeight = 83;
+
+var creditsScreen = 15;
+var creditsScreenWidth = 1440;
+var creditsScreenHeight = 900;
+
 
