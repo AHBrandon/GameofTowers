@@ -228,7 +228,7 @@ $(document).ready(function ()
 	{
             timer = -999999; //test hack
             currState = Object.create(MainMenuStateClass);
-	     gameState = States.TITLE;
+	    gameState = States.TITLE;
             currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
         }
 		
@@ -241,25 +241,30 @@ $(document).ready(function ()
         {
             timer = 0;
             currState = Object.create(MainMenuStateClass);
-	   
+            currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);	   
         }
 
         switch(gameState)
         {
             case States.TITLE:
                 //update your main menu object
-                if ((mousePos.x > playImage.x) && (mousePos.x < (playImage.x + playImage.width)))
+                if ((mousePos.x > playXPos) && (mousePos.x < (playXPos + playWidth)))
                 {
-                    if ((mousePos.y > playImage.y) && (mousePos.y < (playImage.y + playImage.height)))
+                    if ((mousePos.y > playYPos) && (mousePos.y < (playYPos + playHeight)))
                     {
                         currState = Object.create(PlayGameStateClass);
-                        currState.init();
+			gameState = States.GAME;
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
+		
             break;
 			
             case States.GAME:
             //update your game object
+	    //this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
+	    //position of mouse clicks.
+	    
             break;
 			
             case States.END_GAME:
