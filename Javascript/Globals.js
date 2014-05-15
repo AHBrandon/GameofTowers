@@ -11,6 +11,12 @@ var DOWN = 40;
 var RIGHT = 39;
 var LEFT = 37;
 
+var mousePos =
+  {
+      x: 0,
+      y: 0,
+  };
+
 var PLAYER_START_HEALTH = 50;
 var PLAYER_FLASH_LENGTH = 3;
 var PLAYER_DEATH_TIME = 3;
