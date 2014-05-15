@@ -13,12 +13,6 @@ $(document).ready(function ()
 
     var assetsLoaded = 0;
     var assetsToLoad = new Array();
-
-    var mousePos = 
-    {
-    	x: 0,
-		y: 0,
-    };
     
     var backgroundImage = new Image();
     backgroundImage.src = "Assets/BGs/Backgroundday.png";
@@ -279,7 +273,7 @@ $(document).ready(function ()
                     {
                         currState = Object.create(PlayGameState);
                         gameState = States.START_GAME_DELAY;
-                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad, gameState, bulletList);
                     }
                 }
 				
@@ -339,12 +333,7 @@ $(document).ready(function ()
         }
     }
 
-    function updateWizardAttack() {
-        for (var i = 0; i < bulletList.length; ++i) {
-            bulletList[i].updateBullet(wizard);
-            context.drawImage(imgBullet, wizard.x, wizard.y, bulletWidth, bulletHeight, bulletList[i].spriteAnim.rect.x, bulletList[i].spriteAnim.rect.y, bulletWidth, bulletHeight);
-        }
-    }
+    
 
     function updateDragonAttack() {
         for (var i = 0; i < fireBallList.length; ++i) {

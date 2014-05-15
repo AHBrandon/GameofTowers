@@ -1,5 +1,11 @@
 var assetsToLoad = new Array();
 
+var mousePos = 
+{
+	x: 0,
+	y: 0,
+};
+
 var UP = 38;
 var DOWN = 40;
 var RIGHT = 39;
@@ -16,9 +22,11 @@ var wizardHeight = 35;
 var wizardXPos = 710;
 var wizardYPos = 600;
 
+var bulletImage=2;
 var bulletWidth = 17;
 var bulletHeight = 18;
 
+var fireballImage=5;
 var fireBallWidth = 55;
 var fireBallHeight = 77;
 
