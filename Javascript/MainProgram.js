@@ -14,6 +14,12 @@ $(document).ready(function ()
     var assetsLoaded = 0;
     var assetsToLoad = new Array();
 
+    var mousePos = 
+    {
+    	x: 0,
+	y: 0,
+    };
+    
     var backgroundImage = new Image();
     backgroundImage.src = "Assets/BGs/Backgroundday.png";
     backgroundImage.addEventListener("load", assetLoaded, false);
@@ -93,9 +99,8 @@ $(document).ready(function ()
     var canvases = new Array();
 	
     var currState = Object.create(SplashScreenStateClass);
+    var gameState = States.SPLASH;
     
-    var mousePosX;
-    var mousePosY;
 
     currState.init(0, canvasWidth, canvasHeight, assetsToLoad);
     var previousTime = Date.now();
@@ -106,10 +111,9 @@ $(document).ready(function ()
         previousTime = Date.now();
     };
     
-    addEventListener("click", mouseDown, false);
-    addEventListener('mousemove', mouseMove, false);
-
-
+    addEventListener("click", mouseDownHandler, false);
+    //addEventListener("mousemove", mouseMove, false);
+     addEventListener("click", mouseDown, false);
     var timeCounter = Object.create(TimerClass);
 
     var player = Object.create(Player);
@@ -132,40 +136,27 @@ $(document).ready(function ()
     {
         var index = keysPressed.indexOf(event.keyCode);
         if (index != -1) 
-	    {
+	{
             keysPressed.splice(index, 1);
         }
     }, false);
 
-    function mouseDown(e) 
+    function mouseDownHandler(event) 
     {
-
-        mousePosX = e.pageX;
-        mousePosY = e.pageY;
+        for (var i = 0; i < canvases.length; ++i) 
+	{
+            if (canvases[i] === event.target) 
+	    {
+            }
+        }
+    }
+    /*
+    addEventListener('onmousedown', function (evt) 
+    {
+        mousePos = getMousePos(canvases, evt);
+    }, false);
     
-        currState = Object.create(PlayGameStateClass);
-        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
-        console.log("x: " + mousePosX + " y: "+ mousePosY);
-
-    }
-
-    function mouseMove(e)
-    {
-        mousePosX = e.pageX;
-        mousePosY = e.pageY;
-        //console.log("x: " + mousePosX + " y: "+ mousePosY);
-    }
-
-    window.addEventListener('mousemove', function (evt) 
-    {
-        var mousePos = getMousePos(canvases, evt);
-    }, false);
-
-    window.addEventListener('onmousedown', function (evt) 
-    {
-        var mousePos = getMousePos(canvases, evt);
-    }, false);
-
+    
     function getMousePos(canvases, evt)
     {
         for (var i = 0; i < canvases.length; ++i)
@@ -173,11 +164,21 @@ $(document).ready(function ()
             var rect = canvases[i].getBoundingClientRect();
             return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
         }
+    }*/
+    
+    function mouseMove(e)
+    {
+    	mousePos.x = e.pageX;
+	mousePos.y = e.pageY;
+	console.log("x: "+ mousePox.x + " y: " + mousePos.y);
     }
     
-    function mouseDownHandler(e)
+    function mouseDown(e)
     {
         //player.attack(e);
+	mousePos.x = e.pageX;
+	mousePos.y = e.pageY;
+	console.log("x: "+ mousePos.x + " y: " + mousePos.y);
     }
     
     function buildCanvases() 
@@ -194,7 +195,7 @@ $(document).ready(function ()
                 newCanvas.style.position = "absolute";
                 newCanvas.style.top = row * canvasHeight + "px";
                 newCanvas.style.left = col * canvasWidth + "px";
-                newCanvas.addEventListener("mousedown", mouseDown, false);
+                newCanvas.addEventListener("mousedown", mouseDownHandler, false);
 
                 canvases.push(newCanvas);
             }
@@ -222,11 +223,12 @@ $(document).ready(function ()
         previousTime = Date.now();
         timer += deltaTime;
 
-        //timer check to move to another state.
-        if (timer > 2) 
-        {
-            //timer = -999999; //test hack
+	//timer check to move to another state.
+        if (timer > 3) 
+	{
+            timer = -999999; //test hack
             currState = Object.create(MainMenuStateClass);
+	     gameState = States.TITLE;
             currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
         }
 		
@@ -239,15 +241,16 @@ $(document).ready(function ()
         {
             timer = 0;
             currState = Object.create(MainMenuStateClass);
+	   
         }
 
-        switch(currState)
+        switch(gameState)
         {
             case States.TITLE:
                 //update your main menu object
-                if ((mousePosX > playImage.x) && (mousePosX < (playImage.x + playImage.width)))
+                if ((mousePos.x > playImage.x) && (mousePos.x < (playImage.x + playImage.width)))
                 {
-                    if ((mousePosY > playImage.y) && (mousePosY < (playImage.y + playImage.height)))
+                    if ((mousePos.y > playImage.y) && (mousePos.y < (playImage.y + playImage.height)))
                     {
                         currState = Object.create(PlayGameStateClass);
                         currState.init();
