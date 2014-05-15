@@ -6,22 +6,22 @@ var PlayGameStateClass =
     canvasHeight: 0,
     assets: undefined,
 
-    init: function (canvasWidth, canvasHeight, assets) {
+    init: function (canvasWidth, canvasHeight, assets) 
+	{
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.assets = assets;
     },
 
-    update: function (deltaTime, MouseEvent) {
-        //onmousedown, mousepos collisioncheck with image position
+    update: function (deltaTime, MouseEvent) 
+	{
+        timeCounter.tick;
     },
 	
    //Increment time
-   /*
-    timeCounter.tick : function () {
-        this.time++;
-    },
-	*/
+   
+    
+	
     render: function (currContext) {
         currContext.drawImage(this.assets[backGroundGame], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
         currContext.drawImage(this.assets[castleImage], 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
@@ -38,7 +38,11 @@ var PlayGameStateClass =
         //A blank rectangle is drawn if the player doesn't have a power up.
        // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
 	   
-        //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+        currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
     },
 };
 
+timeCounter : function () 
+	{
+        this.time++;
+    },
