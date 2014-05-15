@@ -62,8 +62,6 @@ var powerUpWidth = 50;
 var powerUpHeight = 50;
 
 var menu = 8;
-var menuWidth = 1440;
-var menuHeight = 900;
 
 var play = 9;
 var playXPos = 561;
@@ -73,25 +71,23 @@ var playHeight = 84;
 
 var howTo = 10;
 var howToXPos = 525;
-var howToYPos = 358;
+var howToYPos = 388;
 var howToWidth = 480;
 var howToHeight = 84;
 
 var credits = 11;
 var creditsXPos = 600;
-var creditsYPos = 450;
+var creditsYPos = 500;
 var creditsWidth = 301;
 var creditsHeight = 84;
 
 var quit = 12;
 var quitXPos = 640;
-var quitYPos = 552;
+var quitYPos = 610;
 var quitWidth = 204;
 var quitHeight = 83;
 
 var howToPlayScreen = 13;
-var howToWidth = 1440;
-var howToHeight = 900;
 
 var mainMenuImage = 14;
 var menuXPos = 800;
@@ -100,7 +96,5 @@ var menuTextWidth = 461;
 var menuTextHeight = 83;
 
 var creditsScreen = 15;
-var creditsScreenWidth = 1440;
-var creditsScreenHeight = 900;
 
 

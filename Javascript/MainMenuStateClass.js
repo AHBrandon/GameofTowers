@@ -18,7 +18,7 @@ var MainMenuStateClass =
 	
 	render : function(currContext)
 	{
-	    currContext.drawImage(this.assets[menu], 0, 0, menuWidth, menuHeight, 0, 0, menuWidth, menuHeight);
+	    currContext.drawImage(this.assets[menu], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
 	    currContext.drawImage(this.assets[play], 0, 0, playWidth, playHeight, playXPos, playYPos, playWidth, playHeight);
 	    currContext.drawImage(this.assets[howTo], 0, 0, howToWidth, howToHeight, howToXPos, howToYPos, howToWidth, howToHeight);
 	    currContext.drawImage(this.assets[credits], 0, 0, creditsWidth, creditsHeight, creditsXPos, creditsYPos, creditsWidth, creditsHeight);
