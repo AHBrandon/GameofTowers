@@ -1,6 +1,6 @@
  var timeCounter = Object.create(TimerClass);
  
-var PlayGameStateClass =
+var PlayGameState =
 {
     canvasWidth: 0,
     canvasHeight: 0,
@@ -41,8 +41,8 @@ var PlayGameStateClass =
         currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
     },
 };
-
+/*
 timeCounter : function () 
 	{
         this.time++;
-    },
+    },*/

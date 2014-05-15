@@ -128,7 +128,7 @@ $(document).ready(function ()
     
     addEventListener("click", mouseDownHandler, false);
     //addEventListener("mousemove", mouseMove, false);
-     addEventListener("click", mouseDown, false);
+    addEventListener("click", mouseDown, false);
    
 
     var player = Object.create(Player);
@@ -192,9 +192,9 @@ $(document).ready(function ()
     function mouseDown(e)
     {
         //player.attack(e);
-	mousePos.x = e.pageX;
-	mousePos.y = e.pageY;
-	console.log("x: "+ mousePos.x + " y: " + mousePos.y);
+		mousePos.x = e.pageX;
+		mousePos.y = e.pageY;
+		console.log("x: "+ mousePos.x + " y: " + mousePos.y);
     }
     
     function buildCanvases() 
@@ -239,7 +239,7 @@ $(document).ready(function ()
         previousTime = Date.now();
         timer += deltaTime;
 
-	//timer check to move to another state.
+		//timer check to move to another state.
         if (timer > 3) 
         {
             timer = -999999; //test hack
@@ -249,8 +249,8 @@ $(document).ready(function ()
         }
 		
     	//calls the update from the respective StateClass file
-    	//need to pass in the mouse control for our game.
         currState.update(deltaTime, MouseEvent);
+		
         //check for end game
         if (currState.state != undefined && currState.state ==
            States.GAME_OVER)
@@ -268,12 +268,12 @@ $(document).ready(function ()
                 {
                     if ((mousePos.y > playYPos) && (mousePos.y < (playYPos + playHeight)))
                     {
-                        currState = Object.create(PlayGameStateClass);
+                        currState = Object.create(PlayGameState);
                         gameState = States.GAME;
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
-
+				else
                 if ((mousePos.x > howToXPos) && (mousePos.x < (howToXPos + howToWidth)))
                 {
                     if ((mousePos.y > howToYPos) && (mousePos.y < (howToYPos + howToHeight)))
@@ -283,13 +283,12 @@ $(document).ready(function ()
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
-                break;
-
+				else
                 if ((mousePos.x > creditsXPos) && (mousePos.x < (creditsXPos + creditsWidth)))
                 {
                     if ((mousePos.y > creditsYPos) && (mousePos.y < (creditsYPos + creditsHeight)))
                     {
-                        currState = Object.create(CreditsStateClass);
+                        currState = Object.create(Credits);
                         gameState = States.CREDITS;
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
