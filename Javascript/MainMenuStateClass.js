@@ -1,4 +1,4 @@
-var MainMenuStateClass = 
+var MainMenuStateClass =
 {
 	canvasWidth : 0,
 	canvasHeight : 0,
@@ -11,14 +11,24 @@ var MainMenuStateClass =
 		this.assets = assets;
 	},
 	
-	update : function(deltaTime, keysPressed)
+	update : function(deltaTime, MouseEvent)
 	{
-		console.log("Main Menu Update");
+	    //onmousedown, mousepos collisioncheck with image position
 	},
 	
 	render : function(currContext)
 	{
-		currContext.fillStyle = "rgb(0,0,0)"
-		currContext.fillRect(0,0, this.canvasWidth, this.canvasHeight);
+	    currContext.drawImage(this.assets[menu], 0, 0, menuWidth, menuHeight, 0, 0, menuWidth, menuHeight);
+	    currContext.drawImage(this.assets[play], 0, 0, playWidth, playHeight, playXPos, playYPos, playWidth, playHeight);
+	    currContext.drawImage(this.assets[howTo], 0, 0, howToWidth, howToHeight, howToXPos, howToYPos, howToWidth, howToHeight);
+	    currContext.drawImage(this.assets[credits], 0, 0, creditsWidth, creditsHeight, creditsXPos, creditsYPos, creditsWidth, creditsHeight);
+	    currContext.drawImage(this.assets[quit], 0, 0, quitWidth, quitHeight, quitXPos, quitYPos, quitWidth, quitHeight);
+	},
+
+
+	mouseclickchk: function (mousePos) {
+
 	}
 };
+
+

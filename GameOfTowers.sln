@@ -4,11 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91EA4A40-630B-43F3-87A8-9B65828DF95D}"
+	ProjectSection(SolutionItems) = preProject
+		GoT.html = GoT.html
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", "{063B5F06-246C-4239-92CF-4895EFB24406}"
 	ProjectSection(SolutionItems) = preProject
 		Javascript\Airship.js = Javascript\Airship.js
-		Javascript\AssetLoader.js = Javascript\AssetLoader.js
 		Javascript\Ballista.js = Javascript\Ballista.js
 		Javascript\Bolt.js = Javascript\Bolt.js
 		Javascript\Bomb.js = Javascript\Bomb.js
@@ -23,17 +25,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Javascript", "Javascript", 
 		Javascript\GameObjectClass.js = Javascript\GameObjectClass.js
 		Javascript\GameStateClass.js = Javascript\GameStateClass.js
 		Javascript\Globals.js = Javascript\Globals.js
+		ImageLoader.js = ImageLoader.js
 		Javascript\LevelClass.js = Javascript\LevelClass.js
 		Javascript\LossStateClass.js = Javascript\LossStateClass.js
 		Javascript\MainMenuStateClass.js = Javascript\MainMenuStateClass.js
+		Javascript\MainProgram.js = Javascript\MainProgram.js
 		Javascript\MathUtils.js = Javascript\MathUtils.js
 		Javascript\oldEnemy.js = Javascript\oldEnemy.js
 		Javascript\OptionStateClass.js = Javascript\OptionStateClass.js
 		Javascript\PlatformEnemy.js = Javascript\PlatformEnemy.js
 		Javascript\Player.js = Javascript\Player.js
+		PlayGameState.js = PlayGameState.js
 		Javascript\Projectile.js = Javascript\Projectile.js
 		Javascript\RectClass.js = Javascript\RectClass.js
-		Javascript\SplashScreenStateClass.js = Javascript\SplashScreenStateClass.js
+		SplashScreen.js = SplashScreen.js
 		Javascript\SpriteAnimClass.js = Javascript\SpriteAnimClass.js
 		Javascript\State.js = Javascript\State.js
 		Javascript\TimerClass.js = Javascript\TimerClass.js

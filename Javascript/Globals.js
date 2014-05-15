@@ -1,3 +1,5 @@
+var assetsToLoad = new Array();
+
 var UP = 38;
 var DOWN = 40;
 var RIGHT = 39;
@@ -8,6 +10,7 @@ var PLAYER_FLASH_LENGTH = 3;
 var PLAYER_DEATH_TIME = 3;
 var PLAYER_DEAD_FRAME_INDEX;
 
+var wizardImage = 1;
 var wizardWidth = 51;
 var wizardHeight = 35;
 var wizardXPos = 710;
@@ -19,9 +22,11 @@ var bulletHeight = 18;
 var fireBallWidth = 55;
 var fireBallHeight = 77;
 
+var backGroundGame = 0;
 var backGroundWidth = 1440;
 var backGroundHeight = 900;
 
+var castleImage = 3;
 var castleWidth = 388;
 var castleHeight = 270;
 var castleXPos = 530;
@@ -47,9 +52,41 @@ var wave = 0;
 var waveXPos = 7;
 var waveYPos = 751;
 
+var score = 0;
+var scoreX = 7;
+var scoreY = 778;
+
 var powerUpX = 7;
-var powerUpY = 778;
+var powerUpY = 806;
 var powerUpWidth = 50;
 var powerUpHeight = 50;
+
+var menu = 8;
+var menuWidth = 1440;
+var menuHeight = 900;
+
+var play = 9;
+var playXPos = 561;
+var playYPos = 274;
+var playWidth = 395;
+var playHeight = 84;
+
+var howTo = 10;
+var howToXPos = 525;
+var howToYPos = 358;
+var howToWidth = 480;
+var howToHeight = 84;
+
+var credits = 11;
+var creditsXPos = 600;
+var creditsYPos = 450;
+var creditsWidth = 301;
+var creditsHeight = 84;
+
+var quit = 12;
+var quitXPos = 640;
+var quitYPos = 552;
+var quitWidth = 204;
+var quitHeight = 83;
 
 

@@ -44,6 +44,17 @@ Dragon.update = function (deltaTime) {
     }
 };
 
+Dragon.render = function () {
+
+};
+
+Dragon.attack = function (castle) {
+    var newFireBall = Object.create(FireBall);
+
+    newFireBall.init(imgDragon, dragonXPos, dragonYPos, fireBallWidth, fireBallHeight, 1, 1,
+                    100, fireBallWidth, fireBallHeight, castle.x, castle.y);
+    fireBallList.push(newFireBall);
+};
 
 Dragon.applyDamage = function (amount) {
     if (this.state == States.INVULNERABLE) {
@@ -71,6 +82,5 @@ Dragon.applyDamage = function (amount) {
 };
 
 
-Dragon.attack = function (deltaTime) {
 
-};
+

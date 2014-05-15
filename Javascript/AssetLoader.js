@@ -8,7 +8,7 @@ $(document).ready(function ()
     var OUTPUT_HEIGHT = 20;
     var CANVAS_WIDTH = 1440;
     var CANVAS_HEIGHT = 900;
-    var assetsLoaded = 0;
+    var assetsLoaded = 0; 
     var assetsToLoad = new Array();
 
     var backgroundImage = new Image();
@@ -16,25 +16,27 @@ $(document).ready(function ()
     backgroundImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(backgroundImage);
 
-    var castle = new Image();
-    castle.src = "Assets/Sprites/Castle.png";
-    castle.addEventListener("load", assetLoaded, false);
-    assetsToLoad.push(castle);
-
     var wizard = new Image();
     wizard.src = "Assets/Sprites/wizard.png";
     wizard.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(wizard);
 
-    var imgDragon = new Image();
-    imgDragon.src = "Assets/Sprites/wyvern.png"
-    imgDragon.addEventListener("load", assetLoaded, false);
-    assetsToLoad.push(imgDragon);
-
+    var bulletList = [];
     var imgBullet = new Image();
     imgBullet.src = "Assets/Sprites/bullet.png";
     imgBullet.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(imgBullet);
+
+    var castle = new Image();
+    castle.src = "Assets/Sprites/Castle.png";
+    castle.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(castle);
+
+    var fireBallList = [];
+    var imgDragon = new Image();
+    imgDragon.src = "Assets/Sprites/wyvern.png"
+    imgDragon.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(imgDragon);
 
     var imgFireBall = new Image();
     imgFireBall.src = "Assets/Sprites/fireball.png";
@@ -51,6 +53,31 @@ $(document).ready(function ()
     imgDamage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(imgDamage);
 
+    var mainMenuImage = new Image();
+    mainMenuImage.src = "Assets/BGs/mainmenu.png";
+    mainMenuImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(mainMenuImage);
+
+    var playImage = new Image();
+    playImage.src = "Assets/BGs/play.png";
+    playImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(playImage);
+
+    var creditsImage = new Image();
+    creditsImage.src = "Assets/BGs/credits.png";
+    creditsImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(creditsImage);
+
+    var quitImage = new Image();
+    quitImage.src = "Assets/BGs/quit.png";
+    quitImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(quitImage);
+
+    var howToImage = new Image();
+    howToImage.src = "Assets/BGs/howto.png";
+    howToImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(howToImage);
+
     var gameScreen = document.getElementById("gameScreen");
 
     var output = document.getElementById("output");
@@ -59,31 +86,35 @@ $(document).ready(function ()
 
     var currState = Object.create(MainMenuStateClass);
 
-    //var currState = Object.create(SplashScreenStateClass);
-    
-    addEventListener("click", mouseDownHandler, false);
+    var currState = Object.create(SplashScreenStateClass);
+    currState.init(0, canvasWidth, canvasHeight, assetsToLoad);
 
-    var bulletList = [];
-    var fireBallList = [];
+    addEventListener("click", mouseDownHandler, false);
 
     var timeCounter = Object.create(TimerClass);
 
+    var player = Object.create(Player);
+    //player.init(wizard, wizardXPos, wizardYPos, wizardWidth, wizardHeight, 1, 1, 100, wizardWidth, wizardHeight, wizardXPos, wizardYPos);
+
+    var enemyDragon = Object.create(Dragon);
+
+    var gameObjects = new Array();
 
     function mouseDownHandler(e)
     {
-        var newBullet = Object.create(Bullet);
-
-        newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
-                        100, bulletWidth, bulletHeight, e.pageX, e.pageY);
-        bulletList.push(newBullet);
+        //player.attack(e);
     }
-
-    
+    /*
+    var dragonTimer = setInterval(onDragonInterval, 3000);	//every three seconds
+    function onDragonInterval() {//tell the fire ball to start at the dragon's position and then target the castle, hard coded values for now because of errors...	
+        // addfireBall(555, 250, 530, 632);
+        enemyDragon.attack(castle);
+    }*/
 
     function gameLoop()
     {
         window.requestAnimationFrame(gameLoop, Canvas);
-        update();
+        //update();
         render();
     }
 
@@ -107,6 +138,22 @@ $(document).ready(function ()
         }
     }
 
+    function hud()
+    {
+        context.font = "20px Verdana";
+        context.fillText("Health: " + health, healthXPos, healthYPos);
+        context.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
+        context.fillText("Wave: " + wave, waveXPos, waveYPos);
+        context.fillText("Score: " + score, scoreX, scoreY);
+        context.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+        context.stroke();
+
+        //to show what the power up will look like when the player gets one. 
+        //A blank rectangle is drawn if the player doesn't have a power up.
+        context.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+        context.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+    }
+
     function updateWizardAttack() {
         for (var i = 0; i < bulletList.length; ++i) {
             bulletList[i].updateBullet(wizard);
@@ -116,7 +163,7 @@ $(document).ready(function ()
 
     function updateDragonAttack() {
         for (var i = 0; i < fireBallList.length; ++i) {
-            updatefireBall(fireBallList[i], imgDragon);
+            fireBallList[i].updateFireBall(imgDragon);
             context.drawImage(imgFireBall, imgDragon.x, imgDragon.y, fireBallWidth, fireBallHeight, fireBallList[i].x, fireBallList[i].y, fireBallWidth, fireBallHeight);
 
         }
@@ -140,55 +187,59 @@ $(document).ready(function ()
         this.time++;
     };
 
-    function drawCanvas() {
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-        context.font = "20px Verdana";
-        context.drawImage(backgroundImage, 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
-        context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
-        context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
-        context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
-        context.fillText("Health: " + health, healthXPos, healthYPos);
-        context.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
-        context.fillText("Wave: " + wave, waveXPos, waveYPos);
-        context.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        context.stroke();
+    function dragonRender()
+    {/*
+        var frameWide = Math.floor(this.imageWidth / this.frameWidth);
+        var frameHeight = (this.imageHeight / this.frameHeight);
+        var srcx = ((this.startFrame + this.currentFrame) % frameWide) * this.frameWidth;
+        var srcy = (Math.floor((this.startFrame + this.currentFrame) / frameWide)) * this.frameHeight;
+        context.drawImage(imgDragon, srcx, srcy, frameWidth, frameHeight, 0, 0, frameWidth, frameHeight);*/
+    }
 
-        //to show what the power up will look like when the player gets one. 
-        //A blank rectangle is drawn if the player doesn't have a power up.
-        context.drawImage(imgHealth, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        context.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+
+
+    function drawCanvas()
+    {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        //context.drawImage(backgroundImage, 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
+        //context.drawImage(castle, 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
+        //context.drawImage(wizard, 0, 0, wizardWidth, wizardHeight, wizardXPos, wizardYPos, wizardWidth, wizardHeight);
+        //context.drawImage(imgDragon, 0, 0, dragonWidth, dragonHeight, dragonXPos, dragonYPos, dragonWidth, dragonHeight);
+        currState.render(context);
+       // hud();
     }
 
     timeCounter.start();
+
+    var timer = 0;
 
     function render() {
         drawCanvas();
 
         gameScreen.appendChild(Canvas);
 
-        updateWizardAttack();
+        var deltaTime = (Date.now() - previousTime) / 1000;
+        previousTime = Date.now();
+        timer += deltaTime;
 
-        updateDragonAttack();
+        if (timer > 3) {
+            timer = -999999; //test hack
+            currState = Object.create(MainMenuStateClass);
+            currState.init(canvasWidth, canvasHeight, assetsToLoad);
+        }
+
+        //updateWizardAttack();
+
+        //updateDragonAttack();
 
         //doesn't work yet
         //checkCollision();
     }
 
-    //test code to show what the dragon will do
-    var interval = setInterval(onInterval, 3000);	//every three seconds
-    function onInterval() {//tell the fire ball to start at the dragon's position and then target the castle, hard coded values for now because of errors...	
-       // addfireBall(555, 250, 530, 632);
-        var newFireBall = Object.create(FireBall);
-
-        newFireBall.init(imgFireBall, dragonXPos, dragonYPos, dragonWidth, dragonWidth, 1, 1,
-                        100, dragonWidth, dragonWidth, castleXPos, castleYPos);
-        fireBallList.push(newFireBall);
-    }
-
     function assetLoaded(event)
     {
         assetsLoaded++;
-        if (assetsLoaded === assetsToLoad.length)
+        if (this.assetsLoaded === assetsToLoad.length)
         {
             gameLoaded();
         }

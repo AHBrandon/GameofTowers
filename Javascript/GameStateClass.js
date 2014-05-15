@@ -57,11 +57,13 @@ var GameStateClass =
     },
 
     loadGameObjects: function (assets) {
-        for (var i = 0; i < this.level.gameObjects.length; ++i) {
+        for (var i = 0; i < this.level.gameObjects.length; ++i)
+        {
             var currData = this.level.gameObjects[i];
-            switch (currData.type) {
+            switch (currData.type)
+            {
                 case GameObjectData.PLAYER:
-                    this.player.init(assets[SPRITE_ATLAS], currData.x,
+                    this.player.init(wizard, currData.x,
 			        currData.y - 50, 64, 64, 0, 1, 1000, currData.x,
 			        currData.y - 50, 64, 64);
                     break;
@@ -70,8 +72,8 @@ var GameStateClass =
                     var newAI = Object.create(PlatformEnemy);
 
                     newAI.init(this.level, assets[SPRITE_ATLAS], currData.x,
-			        currData.y, 64, 64, 1, 1, 1000, currData.x,
-			        currData.y, 64, 64);
+			        currData.y, backGroundWidth, backGroundHeight, 1, 1, 1000, currData.x,
+			        currData.y, backGroundWidth, backGroundHeight);
 
                     this.gameObjects.push(newAI);
                     break;

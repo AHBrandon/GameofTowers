@@ -5,7 +5,8 @@ Player.state = undefined;
 Player.toggleAlphaTimer = undefined;
 
 Player.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				           frameRate, collisionWidth, collisionHeight, targetX, targetY) {
+				           frameRate, collisionWidth, collisionHeight, targetX, targetY)
+{
     this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
 				  frameRate, collisionWidth, collisionHeight, targetX, targetY);
 
@@ -17,6 +18,15 @@ Player.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFra
     this.state = State.DEFAULT;
     this.health = PLAYER_START_HEALTH;
 };
+
+Player.attack = function (e) {
+    var newBullet = Object.create(Bullet);
+
+    newBullet.init(imgBullet, wizardXPos, wizardYPos, bulletWidth, bulletHeight, 1, 1,
+                    100, bulletWidth, bulletHeight, e.pageX, e.pageY);
+    bulletList.push(newBullet);
+}
+
 
 Player.toggleAlpha = function ()
 {
@@ -32,7 +42,6 @@ Player.toggleAlpha = function ()
     var self = this;
     this.toggleAlphaTimer = setTimeout(function () { self.toggleAlpha(); }, PLAYER_FLASH_LENGTH);
 };
-
 
 Player.update = function (deltaTime)
 {
