@@ -114,7 +114,7 @@ $(document).ready(function ()
     addEventListener("click", mouseDownHandler, false);
     //addEventListener("mousemove", mouseMove, false);
      addEventListener("click", mouseDown, false);
-    var timeCounter = Object.create(TimerClass);
+   
 
     var player = Object.create(Player);
     //player.init(wizard, wizardXPos, wizardYPos, wizardWidth, wizardHeight, 1, 1, 100, wizardWidth, wizardHeight, wizardXPos, wizardYPos);
@@ -275,18 +275,7 @@ $(document).ready(function ()
 
     function hud()
     {
-        context.font = "20px Verdana";
-        context.fillText("Health: " + health, healthXPos, healthYPos);
-        context.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
-        context.fillText("Wave: " + wave, waveXPos, waveYPos);
-        context.fillText("Score: " + score, scoreX, scoreY);
-        context.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        context.stroke();
-
-        //to show what the power up will look like when the player gets one. 
-        //A blank rectangle is drawn if the player doesn't have a power up.
-        context.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        context.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+  
     }
 
     function updateWizardAttack() {
@@ -317,31 +306,12 @@ $(document).ready(function ()
         }
     }
 
-    //Increment time
-    timeCounter.tick = function () {
-        this.time++;
-    };
     function render() 
 	{
         var currContext = canvases[0].getContext("2d");
         currContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
         currState.render(currContext);
-
-        /*switch(currState)
-        {
-        case States.MAIN_MENU:
-        //render your main menu object
-        break;
-			
-        case States.GAME:
-        //render your game object
-        break;
-			
-        case States.END_GAME:
-        //render the end game object
-        break;
-        }*/
     }
 
     function assetLoaded(event)
