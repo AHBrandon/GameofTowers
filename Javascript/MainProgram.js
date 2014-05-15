@@ -17,7 +17,7 @@ $(document).ready(function ()
     var mousePos = 
     {
     	x: 0,
-	y: 0,
+		y: 0,
     };
     
     var backgroundImage = new Image();
@@ -115,9 +115,9 @@ $(document).ready(function ()
 	
     var currState = Object.create(SplashScreenStateClass);
     var gameState = States.SPLASH;
-    
-
     currState.init(0, canvasWidth, canvasHeight, assetsToLoad);
+	
+	
     var previousTime = Date.now();
 
     window.onfocus = function ()
@@ -180,14 +180,14 @@ $(document).ready(function ()
             var rect = canvases[i].getBoundingClientRect();
             return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
         }
-    }*/
+    }
     
     function mouseMove(e)
     {
     	mousePos.x = e.pageX;
-	mousePos.y = e.pageY;
-	console.log("x: "+ mousePox.x + " y: " + mousePos.y);
-    }
+		mousePos.y = e.pageY;
+		console.log("x: "+ mousePox.x + " y: " + mousePos.y);
+    }*/
     
     function mouseDown(e)
     {
@@ -273,7 +273,7 @@ $(document).ready(function ()
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
-				else
+				
                 if ((mousePos.x > howToXPos) && (mousePos.x < (howToXPos + howToWidth)))
                 {
                     if ((mousePos.y > howToYPos) && (mousePos.y < (howToYPos + howToHeight)))
@@ -283,12 +283,12 @@ $(document).ready(function ()
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
-				else
+				
                 if ((mousePos.x > creditsXPos) && (mousePos.x < (creditsXPos + creditsWidth)))
                 {
                     if ((mousePos.y > creditsYPos) && (mousePos.y < (creditsYPos + creditsHeight)))
                     {
-                        currState = Object.create(Credits);
+                        currState = Object.create(CreditsStateClass);
                         gameState = States.CREDITS;
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
@@ -317,15 +317,15 @@ $(document).ready(function ()
                 }
                 break;
 
-                case States.GAME:
-                    //update your game object
-                    //this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
-                    //position of mouse clicks.
-                    var newBullet = Object.create(Bullet);
+            case States.GAME:
+				//update your game object
+				//this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
+				//position of mouse clicks.
+				var newBullet = Object.create(Bullet);
 
-                    newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
-                                    100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
-                    bulletList.push(newBullet);
+				newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
+								100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
+				bulletList.push(newBullet);
 
                 break;
             
