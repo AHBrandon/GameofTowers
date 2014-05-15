@@ -43,13 +43,9 @@ var PlayGameState =
         {
             t_countdown.time = 0;
 			this.gameState = States.GAME;
-			addEventListener("click", this.addBullet(wizardXPos,wizardYPos,mousePos), false);
+			addEventListener("click", this.addBullet(wizardXPos, wizardYPos, mousePos), false);
+			this.updateWizardAttack();
         }
-    },
-
-    addBullet: function ()
-    {
-
     },
 	
     render: function (currContext) 
