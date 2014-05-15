@@ -11,13 +11,16 @@ var PlayGameState =
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.assets = assets;
-		t_countdown.time = 10;
-		t_countdown.start;
+		t_countdown.time = 5;
+		t_countdown.start();
     },
 
     update: function (deltaTime, MouseEvent) 
 	{
-        t_countdown.tick;
+        if(t_countdown.time < 0)
+        {
+            t_countdown.time = 0;
+        }
     },    
 	
     render: function (currContext) {
@@ -39,7 +42,7 @@ var PlayGameState =
 		if (States.START_GAME_DELAY)
 		{
 			currContext.font = "72px Georgia";
-			currContext.fillText("GAME START IN " + t_countdown.time, 200, 200);
+			currContext.fillText("GAME STARTS IN " + t_countdown.time, 200, 200);
 		}
     },
 };
