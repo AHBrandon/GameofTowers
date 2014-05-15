@@ -278,7 +278,7 @@ $(document).ready(function ()
                     if ((mousePos.y > playYPos) && (mousePos.y < (playYPos + playHeight)))
                     {
                         currState = Object.create(PlayGameState);
-                        gameState = States.GAME;
+                        gameState = States.START_GAME_DELAY;
                         currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad);
                     }
                 }
@@ -331,8 +331,9 @@ $(document).ready(function ()
 				//this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
 				//position of mouse clicks.
 			
-                addEventListener("click", addBullet(wizardXPos, wizardYPos, mousePos), false);
-                updateWizardAttack();
+                //addEventListener("click", addBullet(wizardXPos, wizardYPos, mousePos), false);
+                //updateWizardAttack();
+				currState.update(deltaTime, MouseEvent);
                 break;
             
         }

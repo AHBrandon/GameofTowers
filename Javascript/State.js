@@ -2,8 +2,8 @@ var States =
 {
     SPLASH: 0,
     TITLE: 1,
-    OPTIONS: 2,
-    CREDITS: 3,
+    CREDITS: 2,
+    START_GAME_DELAY: 3,
     GAME: 4,
     END_GAME: 5,
     LOSS: 6,

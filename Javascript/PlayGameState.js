@@ -1,4 +1,4 @@
- var timeCounter = Object.create(TimerClass);
+ var t_countdown = Object.create(TimerClass);
  
 var PlayGameState =
 {
@@ -11,11 +11,13 @@ var PlayGameState =
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.assets = assets;
+		t_countdown.time = 10;
+		t_countdown.start;
     },
 
     update: function (deltaTime, MouseEvent) 
 	{
-        timeCounter.tick;
+        t_countdown.tick;
     },    
 	
     render: function (currContext) {
@@ -32,11 +34,12 @@ var PlayGameState =
 
        // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
 	   
-        currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+        //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+		
+		if (States.START_GAME_DELAY)
+		{
+			currContext.font = "72px Georgia";
+			currContext.fillText("GAME START IN " + t_countdown.time, 200, 200);
+		}
     },
 };
-/*
-timeCounter : function () 
-{
-    this.time++;
-},*/
