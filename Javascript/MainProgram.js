@@ -220,6 +220,15 @@ $(document).ready(function ()
 
     buildCanvases();
 
+    function addBullet(wizardXPos, wizardYPos, mousePos)
+    {
+        var newBullet = Object.create(Bullet);
+
+        newBullet.init(imgBullet, wizardXPos, wizardYPos, bulletWidth, bulletHeight, 1, 1,
+                        100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
+        bulletList.push(newBullet);
+    }
+
     function gameLoop() 
 	{
         window.requestAnimationFrame(gameLoop, canvases[0]);
@@ -321,12 +330,9 @@ $(document).ready(function ()
 				//update your game object
 				//this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
 				//position of mouse clicks.
-				var newBullet = Object.create(Bullet);
-
-				newBullet.init(imgBullet, wizardXPos, wizardYPos, 17, 18, 1, 1,
-								100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
-				bulletList.push(newBullet);
-
+			
+                addEventListener("click", addBullet(wizardXPos, wizardYPos, mousePos), false);
+                updateWizardAttack();
                 break;
             
         }
@@ -364,7 +370,6 @@ $(document).ready(function ()
 	{
         var currContext = canvases[0].getContext("2d");
         currContext.clearRect(0, 0, canvasWidth, canvasHeight);
-        updateWizardAttack();
         currState.render(currContext);
     }
 

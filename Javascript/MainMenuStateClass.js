@@ -25,7 +25,6 @@ var MainMenuStateClass =
 		//currContext.rect(howToXPos, howToYPos, howToWidth, howToHeight);
 	    currContext.drawImage(this.assets[credits], 0, 0, creditsWidth, creditsHeight, creditsXPos, creditsYPos, creditsWidth, creditsHeight);
 		//currContext.rect(creditsXPos, creditsYPos, creditsWidth, creditsHeight);
-	    currContext.drawImage(this.assets[quit], 0, 0, quitWidth, quitHeight, quitXPos, quitYPos, quitWidth, quitHeight);
 		//currContext.stroke();
 	},
 

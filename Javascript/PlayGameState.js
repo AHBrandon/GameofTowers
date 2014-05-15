@@ -16,11 +16,7 @@ var PlayGameState =
     update: function (deltaTime, MouseEvent) 
 	{
         timeCounter.tick;
-    },
-	
-   //Increment time
-   
-    
+    },    
 	
     render: function (currContext) {
         currContext.drawImage(this.assets[backGroundGame], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
@@ -34,8 +30,6 @@ var PlayGameState =
         currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
         currContext.stroke();
 
-        //to show what the power up will look like when the player gets one. 
-        //A blank rectangle is drawn if the player doesn't have a power up.
        // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
 	   
         currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
@@ -43,6 +37,6 @@ var PlayGameState =
 };
 /*
 timeCounter : function () 
-	{
-        this.time++;
-    },*/
+{
+    this.time++;
+},*/
