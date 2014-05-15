@@ -45,7 +45,12 @@ var PlayGameState =
 			this.gameState = States.GAME;
 			addEventListener("click", this.addBullet(wizardXPos,wizardYPos,mousePos), false);
         }
-    },    
+    },
+
+    addBullet: function ()
+    {
+
+    },
 	
     render: function (currContext) 
 	{
