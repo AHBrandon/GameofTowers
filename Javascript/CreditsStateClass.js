@@ -15,7 +15,7 @@ var CreditsStateClass =
     },
 
     render: function (currContext) {
-        currContext.drawImage(this.assets[creditsScreen], 0, 0, creditsScreenWidth, creditsScreenHeight, 0, 0, creditsScreenWidth, creditsScreenHeight);
+        currContext.drawImage(this.assets[creditsScreen], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
         currContext.drawImage(this.assets[mainMenuImage], 0, 0, menuTextWidth, menuTextHeight, menuXPos, menuYPos, menuTextWidth, menuTextHeight);
     },
 };
