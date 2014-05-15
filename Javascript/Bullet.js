@@ -3,7 +3,7 @@ Bullet.bulletId = 0;
 Bullet.bulletSpeed = 5;
 Bullet.damage = 5;
 
-Bullet.updateBullet = function (wizard) {
+Bullet.updateBullet = function () {
     var originX = wizardXPos;
     var originY = wizardYPos;
     var directionX = (this.targetX - originX);

@@ -26,12 +26,12 @@ var PlayGameState =
         this.bulletList.push(newBullet);
     },
 	
-	updateWizardAttack: function () 
+	updateWizardAttack: function (currContext) 
 	{
         for (var i = 0; i < this.bulletList.length; ++i) 
 		{
-            this.bulletList[i].updateBullet(wizard);
-            currContext.drawImage(this.assets[bulletImage], wizard.x, wizard.y, bulletWidth, bulletHeight, 
+            this.bulletList[i].updateBullet();
+            currContext.drawImage(this.assets[bulletImage], 0, 0, bulletWidth, bulletHeight, 
 			                  this.bulletList[i].spriteAnim.rect.x, this.bulletList[i].spriteAnim.rect.y, 
 							  bulletWidth, bulletHeight);
         }
@@ -44,10 +44,12 @@ var PlayGameState =
             t_countdown.time = 0;
 			this.gameState = States.GAME;
 			addEventListener("click", this.addBullet(wizardXPos,wizardYPos,mousePos), false);
+			console.log("looping");
+			t_countdown.stop();
         }
     },    
 	
-    render: function (currContext) 
+	    render: function (currContext) 
 	{
         currContext.drawImage(this.assets[backGroundGame], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
         currContext.drawImage(this.assets[castleImage], 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
@@ -69,5 +71,6 @@ var PlayGameState =
 			currContext.font = "72px Georgia";
 			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 200);
 		}
+		this.updateWizardAttack(currContext);
     },
 };
