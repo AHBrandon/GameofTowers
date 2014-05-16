@@ -11,12 +11,6 @@ var DOWN = 40;
 var RIGHT = 39;
 var LEFT = 37;
 
-var mousePos =
-  {
-      x: 0,
-      y: 0,
-  };
-
 var PLAYER_START_HEALTH = 50;
 var PLAYER_FLASH_LENGTH = 3;
 var PLAYER_DEATH_TIME = 3;
@@ -47,10 +41,12 @@ var castleXPos = 530;
 var castleYPos = 632;
 
 var dragonEnemy = 4;
-var dragonWidth = 230;
+var dragonWidth = 220;
 var dragonHeight = 536;
 var dragonXPos = 395;
 var dragonYPos = 200;
+
+var dragonSpriteAnimHeight = 134;
 
 var timeXPos = 7;
 var timeYPos = 724;

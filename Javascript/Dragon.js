@@ -4,10 +4,11 @@ var Dragon = Object.create(GameObjectClass);
 Dragon.baseInit = Dragon.init;
 
 Dragon.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, targetX, targetY) {
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
+{
     this.state = States.DEFAULT;
     this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				            frameRate, collisionX, collisionY, targetX, targetY);
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
     this.inputDirection = Object.create(VectorClass);
     this.inputDirection.x = 0;
     this.inputDirection.y = 0;

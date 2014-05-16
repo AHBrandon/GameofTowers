@@ -327,7 +327,7 @@ $(document).ready(function ()
 			
                 //addEventListener("click", addBullet(wizardXPos, wizardYPos, mousePos), false);
                 //updateWizardAttack();
-				currState.update(deltaTime, MouseEvent);
+				currState.update(deltaTime, MouseEvent, context);
                 break;
             
         }

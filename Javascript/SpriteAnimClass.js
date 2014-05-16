@@ -12,9 +12,9 @@ var SpriteAnimClass =
 	srcY: 0, //the current top pixel to start copying pixels from in the source
 			 //image
 			 
-	frameWidth:128, //the frame width will be the same width in the source image
+	frameWidth:220, //the frame width will be the same width in the source image
 					//as the width of the displayed anim on the canvas (in pixels)
-	frameHeight:128,//the frame height will be the same height in the source image
+	frameHeight:134,//the frame height will be the same height in the source image
 					//as the height of the displayed anim on the canvas (in pixels)
 	
 	//half the width and height as the frame width / height
@@ -33,7 +33,7 @@ var SpriteAnimClass =
 	startFrame: 0,
 	currentFrame : 0,
 	numFrames: 6,
-	frameRate: 64, //number of milliseconds between frame switches
+	frameRate: 32, //number of milliseconds between frame switches
 	loop: true,
 	isPlaying: false,
 	visible: true,
@@ -58,15 +58,15 @@ var SpriteAnimClass =
 		this.image = image;
 		this.frameWidth = frameWidth;
 		this.frameHeight = frameHeight;
-		this.framesWide = Math.floor(image.width / frameWidth);
-		this.framesHigh = Math.floor(image.height / frameHeight);
+		this.framesWide = Math.floor(this.image.width / this.frameWidth);
+		this.framesHigh = Math.floor(this.image.height / this.frameHeight);
 		this.imageWidth = image.width;
 		this.imageHeight = image.height;
 		this.startFrame = startFrame;
 		this.numFrames = numFrames;
 		this.frameRate = frameRate;
-		this.halfWidth = Math.ceil(frameWidth / 2);
-		this.halfHeight = Math.ceil(frameHeight / 2);
+		this.halfWidth = Math.ceil(this.frameWidth / 2);
+		this.halfHeight = Math.ceil(this.frameHeight / 2);
 		this.updateFrameCoords();
 		this.rect = Object.create(RectClass);
 		this.rect.init(x, y, frameWidth, frameHeight, 0);

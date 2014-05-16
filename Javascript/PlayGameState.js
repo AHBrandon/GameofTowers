@@ -18,7 +18,7 @@ var PlayGameState =
 		t_countdown.start();
 		this.gameObjects = new Array();
 		this.dragon = Object.create(Dragon);
-		this.dragon.init(this.assets[dragonEnemy], dragonXPos, dragonYPos, dragonWidth, dragonHeight, 0, 2, 1000);
+		this.dragon.init(this.assets[dragonEnemy], dragonXPos, dragonYPos, dragonWidth, dragonSpriteAnimHeight, 0, 2, 1000, dragonXPos, dragonYPos, dragonWidth, dragonSpriteAnimHeight);
 		this.gameObjects.push(this.dragon);
 
 		for (var i = 0; i < this.gameObjects.length; ++i)
@@ -33,7 +33,7 @@ var PlayGameState =
         var newBullet = Object.create(Bullet);
 
         newBullet.init(this.assets[bulletImage], wizardXPos, wizardYPos, bulletWidth, bulletHeight, 1, 1,
-                        100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
+                        100, mousePos.x, mousePos.y, bulletWidth, bulletHeight);
         this.bulletList.push(newBullet);
     },
 	
@@ -48,7 +48,7 @@ var PlayGameState =
         }
     },
 
-    update: function (deltaTime, MouseEvent) 
+    update: function (deltaTime, MouseEvent, currContext) 
 	{
         if(t_countdown.time < 0)
         {
@@ -58,6 +58,7 @@ var PlayGameState =
             addEventListener("click", function () { self.addBullet(wizardXPos, wizardYPos, mousePos); }, false);
 			console.log("looping");
 			t_countdown.stop();
+			
         }
     },
 	
@@ -72,7 +73,7 @@ var PlayGameState =
         currContext.fillText("Wave: " + wave, waveXPos, waveYPos);
         currContext.fillText("Score: " + score, scoreX, scoreY);
 
-		if(States.START_GAME_DELAY)
+		if(this.gameState == States.START_GAME_DELAY)
 		{
 			currContext.font = "72px Georgia";
 			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 200);

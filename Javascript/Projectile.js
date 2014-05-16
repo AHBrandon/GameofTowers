@@ -5,9 +5,12 @@ Projectile.baseInit = Projectile.init;
 
 
 Projectile.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				            frameRate, collisionWidth, collisionHeight, targetX, targetY) {
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
+{
     this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				  frameRate, collisionWidth, collisionHeight, targetX, targetY);
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
+    this.targetX = collisionX;
+    this.targetY = collisionY;
     this.spriteAnim = Object.create(SpriteAnimClass);
     this.spriteAnim.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames, 1000, 0, 0);
     this.collisionRect = Object.create(RectClass);

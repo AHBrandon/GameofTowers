@@ -6,17 +6,18 @@ var GameObjectClass =
     spriteAnim: undefined,
     grounded: false,
     collisionRect: undefined,
-    targetX: 0,
-    targetY: 0,
+    collisionX: 0,
+    collisionY: 0,
 
     init: function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionWidth, collisionHeight, targetX, targetY) {
-        this.targetX = targetX;
-        this.targetY = targetY;
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
+    {
+        this.targetX = collisionX;
+        this.targetY = collisionY;
         this.spriteAnim = Object.create(SpriteAnimClass);
-        this.spriteAnim.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames, 1000, 0, 0);
+        this.spriteAnim.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames, 1000);
         this.collisionRect = Object.create(RectClass);
-        this.collisionRect.init(x, y, collisionWidth, collisionHeight, 0);
+        this.collisionRect.init(collisionX, collisionY, collisionWidth, collisionHeight, 0);
     },
 
     translate: function (x, y) {
