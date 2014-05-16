@@ -37,7 +37,7 @@ $(document).ready(function ()
 
     var fireBallList = [];
     var imgDragon = new Image();
-    imgDragon.src = "Assets/Sprites/wyvern.png"
+    imgDragon.src = "Assets/Sprites/wyvern2.png"
     imgDragon.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(imgDragon);
 

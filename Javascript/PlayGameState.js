@@ -5,6 +5,7 @@ var PlayGameState =
     canvasWidth: 0,
     canvasHeight: 0,
     assets: undefined,
+    dragon: undefined,
 
     init: function (canvasWidth, canvasHeight, assets, gameState, bulletList) 
 	{
@@ -15,8 +16,18 @@ var PlayGameState =
 		this.bulletList = bulletList;
 		t_countdown.time = 5;
 		t_countdown.start();
+		this.gameObjects = new Array();
+		this.dragon = Object.create(Dragon);
+		this.dragon.init(this.assets[dragonEnemy], dragonXPos, dragonYPos, dragonWidth, dragonHeight, 0, 2, 1000);
+		this.gameObjects.push(this.dragon);
+
+		for (var i = 0; i < this.gameObjects.length; ++i)
+		{
+		    this.gameObjects[i].spriteAnim.play(true);
+		}
+		
     },
-	
+  
 	addBullet: function (wizardXPos, wizardYPos, mousePos)
     {
         var newBullet = Object.create(Bullet);
@@ -42,14 +53,15 @@ var PlayGameState =
         if(t_countdown.time < 0)
         {
             t_countdown.time = 0;
-			this.gameState = States.GAME;
-			addEventListener("click", this.addBullet(wizardXPos,wizardYPos,mousePos), false);
+            this.gameState = States.GAME;
+            var self = this;
+            addEventListener("click", function () { self.addBullet(wizardXPos, wizardYPos, mousePos); }, false);
 			console.log("looping");
 			t_countdown.stop();
         }
-    },    
+    },
 	
-	    render: function (currContext) 
+	render: function (currContext) 
 	{
         currContext.drawImage(this.assets[backGroundGame], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
         currContext.drawImage(this.assets[castleImage], 0, 0, castleWidth, castleHeight, castleXPos, castleYPos, castleWidth, castleHeight);
@@ -59,18 +71,24 @@ var PlayGameState =
         currContext.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
         currContext.fillText("Wave: " + wave, waveXPos, waveYPos);
         currContext.fillText("Score: " + score, scoreX, scoreY);
-        currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-        currContext.stroke();
 
-       // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-	   
-        //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
-		
-		if (States.START_GAME_DELAY)
+		if(States.START_GAME_DELAY)
 		{
 			currContext.font = "72px Georgia";
 			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 200);
 		}
 		this.updateWizardAttack(currContext);
-    },
+
+		for (var i = 0; i < this.gameObjects.length; ++i)
+		{
+		    this.gameObjects[i].spriteAnim.render(context);
+		}
+
+	    //currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+	    //currContext.stroke();
+
+	    // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+
+	    //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
+    }
 };

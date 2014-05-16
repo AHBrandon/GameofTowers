@@ -1,6 +1,6 @@
 var Bullet = Object.create(Projectile);
 Bullet.bulletId = 0;
-Bullet.bulletSpeed = 5;
+Bullet.bulletSpeed = 2;
 Bullet.damage = 5;
 
 Bullet.updateBullet = function () {

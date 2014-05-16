@@ -46,8 +46,9 @@ var castleHeight = 270;
 var castleXPos = 530;
 var castleYPos = 632;
 
-var dragonWidth = 188;
-var dragonHeight = 76;
+var dragonEnemy = 4;
+var dragonWidth = 230;
+var dragonHeight = 536;
 var dragonXPos = 395;
 var dragonYPos = 200;
 
@@ -64,11 +65,11 @@ var healthYPos = 670;
 
 var wave = 0;
 var waveXPos = 7;
-var waveYPos = 751;
+var waveYPos = 724;
 
 var score = 0;
 var scoreX = 7;
-var scoreY = 778;
+var scoreY = 751;
 
 var powerUpX = 7;
 var powerUpY = 806;

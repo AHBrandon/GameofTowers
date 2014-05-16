@@ -1,13 +1,25 @@
 // JavaScript source code
 // JavaScript source code
-var Dragon = Object.create(Enemy);
+var Dragon = Object.create(GameObjectClass);
 
-Dragon.update = function (deltaTime) {
+Dragon.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				   frameRate, collisionX, collisionY, targetX, targetY) {
+    this.state = States.DEFAULT;
+    //this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				            // frameRate, collisionX, collisionY, targetX, targetY);
+    this.inputDirection = Object.create(VectorClass);
+    this.inputDirection.x = 0;
+    this.inputDirection.y = 0;
+};
+
+Dragon.update = function (deltaTime)
+{
 
     switch (this.state) {
         case States.DEFAULT:
             {
-                if (this.isPlaying) {
+                if (this.isPlaying)
+                {
                     this.currentFrame++;
                     this.x += vx;
 
@@ -18,11 +30,14 @@ Dragon.update = function (deltaTime) {
                         vx = -vx;
                     }
 
-                    if (this.currentFrame >= this.numFrames) {
-                        if (this.loop) {
+                    if (this.currentFrame >= this.numFrames)
+                    {
+                        if (this.loop)
+                        {
                             this.currentFrame = 0;
                         }
-                        else {
+                        else
+                        {
                             this.isPlaying = false;
                             this.currentFrame--;
                         }
@@ -44,7 +59,8 @@ Dragon.update = function (deltaTime) {
     }
 };
 
-Dragon.render = function () {
+Dragon.render = function ()
+{
 
 };
 
