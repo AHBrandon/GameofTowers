@@ -96,6 +96,16 @@ $(document).ready(function ()
     creditsImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(creditsImage);
 
+    var music = new Audio("Assets/The Rains of Castamere Meets Metal.mp3");
+    music.addEventListener('ended', function () {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+    music.volume = 0.2;
+    assetsToLoad.push(music);
+    assetsLoaded++;
+    music.play();
+
     var gameScreen = document.getElementById("gameScreen");
 
     var output = document.getElementById("output");
@@ -124,10 +134,7 @@ $(document).ready(function ()
     //addEventListener("mousemove", mouseMove, false);
     addEventListener("click", mouseDown, false);
    
-
     var player = Object.create(Player);
-    //player.init(wizard, wizardXPos, wizardYPos, wizardWidth, wizardHeight, 1, 1, 100, wizardWidth, wizardHeight, wizardXPos, wizardYPos);
-    //var playerAttack = object.create(Bullet);
 
     var keysPressed = new Array();
     window.addEventListener("keydown", function (event)
@@ -160,35 +167,13 @@ $(document).ready(function ()
             }
         }
     }
-    /*
-    addEventListener('onmousedown', function (evt) 
-    {
-        mousePos = getMousePos(canvases, evt);
-    }, false);
-    
-    
-    function getMousePos(canvases, evt)
-    {
-        for (var i = 0; i < canvases.length; ++i)
-        {
-            var rect = canvases[i].getBoundingClientRect();
-            return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
-        }
-    }
-    
-    function mouseMove(e)
-    {
-    	mousePos.x = e.pageX;
-		mousePos.y = e.pageY;
-		console.log("x: "+ mousePox.x + " y: " + mousePos.y);
-    }*/
     
     function mouseDown(e)
     {
         //player.attack(e);
 		mousePos.x = e.pageX;
 		mousePos.y = e.pageY;
-		console.log("x: "+ mousePos.x + " y: " + mousePos.y);
+		console.log("x: " + mousePos.x + " y: " + mousePos.y);
     }
     
     function buildCanvases() 
