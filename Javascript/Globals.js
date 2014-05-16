@@ -43,8 +43,8 @@ var castleYPos = 632;
 var dragonEnemy = 4;
 var dragonWidth = 220;
 var dragonHeight = 536;
-var dragonXPos = 395;
-var dragonYPos = 200;
+var dragonxPos = 395;
+var dragonyPos = 200;
 
 var dragonSpriteAnimHeight = 134;
 

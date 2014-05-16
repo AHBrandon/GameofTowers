@@ -1,5 +1,7 @@
 var t_countdown = Object.create(TimerClass);
- 
+var dragonXPos = 0;
+var dragonYPos = 0;
+
 var PlayGameState =
 {
     canvasWidth: 0,
@@ -17,15 +19,9 @@ var PlayGameState =
 		t_countdown.time = 5;
 		t_countdown.start();
 		this.gameObjects = new Array();
-		this.dragon = Object.create(Dragon);
-		this.dragon.init(this.assets[dragonEnemy], dragonXPos, dragonYPos, dragonWidth, dragonSpriteAnimHeight, 0, 2, 1000, dragonXPos, dragonYPos, dragonWidth, dragonSpriteAnimHeight);
-		this.gameObjects.push(this.dragon);
-
-		for (var i = 0; i < this.gameObjects.length; ++i)
-		{
-		    this.gameObjects[i].spriteAnim.play(true);
-		}
-		
+		this.createDragon(205, 80);
+		this.createDragon(395, 400);
+		this.createDragon(800, 150);
     },
   
 	addBullet: function (wizardXPos, wizardYPos, mousePos)
@@ -47,6 +43,20 @@ var PlayGameState =
 							  bulletWidth, bulletHeight);
         }
 	},
+
+	createDragon: function(x, y)
+	{
+	    this.dragonXPos = x;
+	    this.dragonYPos = y;
+	    this.dragon = Object.create(Dragon);
+	    this.dragon.init(this.assets[dragonEnemy], this.dragonXPos, this.dragonYPos, dragonWidth, dragonSpriteAnimHeight, 0, 2, 1000, this.dragonXPos, this.dragonYPos, dragonWidth, dragonSpriteAnimHeight);
+	    this.dragon.spriteAnim.play(true);
+	    this.gameObjects.push(this.dragon);
+
+
+	},
+
+
 
 	checkCollision: function() 
 	{
