@@ -1,12 +1,13 @@
 // JavaScript source code
 // JavaScript source code
 var Dragon = Object.create(GameObjectClass);
+Dragon.baseInit = Dragon.init;
 
 Dragon.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
 				   frameRate, collisionX, collisionY, targetX, targetY) {
     this.state = States.DEFAULT;
-    //this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				            // frameRate, collisionX, collisionY, targetX, targetY);
+    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				            frameRate, collisionX, collisionY, targetX, targetY);
     this.inputDirection = Object.create(VectorClass);
     this.inputDirection.x = 0;
     this.inputDirection.y = 0;
@@ -57,19 +58,6 @@ Dragon.update = function (deltaTime)
 
             break;
     }
-};
-
-Dragon.render = function ()
-{
-
-};
-
-Dragon.attack = function (castle) {
-    var newFireBall = Object.create(FireBall);
-
-    newFireBall.init(imgDragon, dragonXPos, dragonYPos, fireBallWidth, fireBallHeight, 1, 1,
-                    100, fireBallWidth, fireBallHeight, castle.x, castle.y);
-    fireBallList.push(newFireBall);
 };
 
 Dragon.applyDamage = function (amount) {

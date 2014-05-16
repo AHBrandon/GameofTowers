@@ -1,4 +1,4 @@
- var t_countdown = Object.create(TimerClass);
+var t_countdown = Object.create(TimerClass);
  
 var PlayGameState =
 {
@@ -81,9 +81,9 @@ var PlayGameState =
 
 		for (var i = 0; i < this.gameObjects.length; ++i)
 		{
-		    this.gameObjects[i].spriteAnim.render(context);
+		    this.gameObjects[i].spriteAnim.render(currContext);
 		}
-
+		//this.dragon.spriteAnim.render(currContext);
 	    //currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
 	    //currContext.stroke();
 
