@@ -46,6 +46,21 @@ var PlayGameState =
 			                  this.bulletList[i].spriteAnim.rect.x, this.bulletList[i].spriteAnim.rect.y, 
 							  bulletWidth, bulletHeight);
         }
+	},
+
+	checkCollision: function() 
+	{
+        for (var i = 0; i < this.bulletList.length; ++i) {
+            for (var j = 0; j < this.gameObjects.length; ++j) {
+                if (AARectToRectCollision(this.bulletList[i].collisionRect, this.gameObjects[j].collisionRect))
+                {
+                    this.gameObjects.splice(j, 1);
+                    j--;
+                    this.bulletList.splice(i, 1);
+                    i--;
+                }
+            }
+        }
     },
 
     update: function (deltaTime, MouseEvent, currContext) 
@@ -59,6 +74,13 @@ var PlayGameState =
 			console.log("looping");
 			t_countdown.stop();
 			
+        }
+
+        this.checkCollision();
+
+        for(var i = 0; i < this.gameObjects.length; ++i)
+        {
+            this.gameObjects[i].update(deltaTime);
         }
     },
 	
@@ -84,7 +106,7 @@ var PlayGameState =
 		{
 		    this.gameObjects[i].spriteAnim.render(currContext);
 		}
-		//this.dragon.spriteAnim.render(currContext);
+
 	    //currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
 	    //currContext.stroke();
 
