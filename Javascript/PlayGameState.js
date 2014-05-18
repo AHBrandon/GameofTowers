@@ -1,6 +1,8 @@
 var t_countdown = Object.create(TimerClass);
 var dragonXPos = 0;
 var dragonYPos = 0;
+var airShipXPos = 0;
+var airShipYPos = 0;
 
 var PlayGameState =
 {
@@ -19,9 +21,10 @@ var PlayGameState =
 		t_countdown.time = 5;
 		t_countdown.start();
 		this.gameObjects = new Array();
-		this.createDragon(205, 80);
-		this.createDragon(395, 400);
-		this.createDragon(800, 150);
+		this.createAirShip(800, 100);
+		this.createDragon(205, 300);
+		this.createDragon(395, 200);
+
     },
   
 	addBullet: function (wizardXPos, wizardYPos, mousePos)
@@ -49,11 +52,20 @@ var PlayGameState =
 	    this.dragonXPos = x;
 	    this.dragonYPos = y;
 	    this.dragon = Object.create(Dragon);
-	    this.dragon.init(this.assets[dragonEnemy], this.dragonXPos, this.dragonYPos, dragonWidth, dragonSpriteAnimHeight, 0, 2, 1000, this.dragonXPos, this.dragonYPos, dragonWidth, dragonSpriteAnimHeight);
+	    this.dragon.init(this.assets[atlas], this.dragonXPos, this.dragonYPos, dragonWidth, dragonHeight, 0, 4, 1000, this.dragonXPos, this.dragonYPos, dragonWidth, dragonHeight);
 	    this.dragon.spriteAnim.play(true);
 	    this.gameObjects.push(this.dragon);
+	    ++enemiesRemaining;
+	},
 
-
+	createAirShip: function (x, y) {
+	    this.airShipXPos = x;
+	    this.airShipYPos = y;
+	    this.airShip = Object.create(Airship);
+	    this.airShip.init(this.assets[atlas], this.airShipXPos, this.airShipYPos, airShipWidth, airShipHeight, 16, 1, 1000, this.airShipXPos, this.airShipYPos, airShipWidth, airShipHeight);
+	    this.airShip.spriteAnim.play(true);
+	    this.gameObjects.push(this.airShip);
+	    ++enemiesRemaining;
 	},
 
 
@@ -68,6 +80,7 @@ var PlayGameState =
                     j--;
                     this.bulletList.splice(i, 1);
                     i--;
+                    --enemiesRemaining;
                 }
             }
         }

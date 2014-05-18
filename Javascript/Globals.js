@@ -40,11 +40,13 @@ var castleHeight = 270;
 var castleXPos = 530;
 var castleYPos = 632;
 
-var dragonEnemy = 4;
-var dragonWidth = 220;
-var dragonHeight = 536;
-var dragonxPos = 395;
-var dragonyPos = 200;
+var atlas = 4;
+var atlasWidth = 384;
+var atlasHeight = 466;
+var dragonWidth = 96;
+var dragonHeight = 86;
+var airShipWidth = 96;
+var airShipHeight = 97;
 
 var dragonSpriteAnimHeight = 134;
 

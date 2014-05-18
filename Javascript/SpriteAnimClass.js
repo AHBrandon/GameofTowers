@@ -12,9 +12,9 @@ var SpriteAnimClass =
 	srcY: 0, //the current top pixel to start copying pixels from in the source
 			 //image
 			 
-	frameWidth:220, //the frame width will be the same width in the source image
+	frameWidth:384, //the frame width will be the same width in the source image
 					//as the width of the displayed anim on the canvas (in pixels)
-	frameHeight:134,//the frame height will be the same height in the source image
+	frameHeight:466,//the frame height will be the same height in the source image
 					//as the height of the displayed anim on the canvas (in pixels)
 	
 	//half the width and height as the frame width / height
@@ -22,8 +22,8 @@ var SpriteAnimClass =
 	halfHeight:0,
 	
 	//number of frames wide / high in the sprite sheet (image)
-	framesWide: 0,
-	framesHigh: 0,
+	framesWide: 4,
+	framesHigh: 5,
 	
 	imageWidth: 0,
 	imageHeight:0,
@@ -32,8 +32,8 @@ var SpriteAnimClass =
 	//and works left to right / top to bottom.
 	startFrame: 0,
 	currentFrame : 0,
-	numFrames: 6,
-	frameRate: 32, //number of milliseconds between frame switches
+	numFrames: 0,
+	frameRate: 64, //number of milliseconds between frame switches
 	loop: true,
 	isPlaying: false,
 	visible: true,

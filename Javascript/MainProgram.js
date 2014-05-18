@@ -36,10 +36,10 @@ $(document).ready(function ()
     assetsToLoad.push(castle);
 
     var fireBallList = [];
-    var imgDragon = new Image();
-    imgDragon.src = "Assets/Sprites/wyvern2.png"
-    imgDragon.addEventListener("load", assetLoaded, false);
-    assetsToLoad.push(imgDragon);
+    var spriteAtlas = new Image();
+    spriteAtlas.src = "Assets/Sprites/spriteatlas.png"
+    spriteAtlas.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(spriteAtlas);
 
     var imgFireBall = new Image();
     imgFireBall.src = "Assets/Sprites/fireball.png";

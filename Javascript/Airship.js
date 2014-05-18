@@ -1,35 +1,30 @@
-// JavaScript source code
-var Airship = Object.create(Enemy);
+var Airship = Object.create(GameObjectClass);
+Airship.baseInit = Airship.init;
+
+Airship.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight) {
+    this.state = States.DEFAULT;
+    this.image = image;
+    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
+    this.inputDirection = Object.create(VectorClass);
+    this.inputDirection.x = 0;
+    this.inputDirection.y = 0;
+    this.vx = 1;
+};
 
 Airship.update = function (deltaTime) {
 
     switch (this.state) {
         case States.DEFAULT:
             {
-                if (this.isPlaying) {
-                    this.currentFrame++;
-                    this.x += vx;
+                this.translate(this.vx, 0.0);
 
-                    if (this.x > CANVAS_WIDTH) {
-                        vx = -vx;
-                    }
-                    if (this.x < 0) {
-                        vx = -vx;
-                    }
-
-                    if (this.currentFrame >= this.numFrames) {
-                        if (this.loop) {
-                            this.currentFrame = 0;
-                        }
-                        else {
-                            this.isPlaying = false;
-                            this.currentFrame--;
-                        }
-                    }
-
-                    var self = this;
-                    setTimeout(function () { self.updateAnimation(); }, this.frameRate);
-
+                if ((this.spriteAnim.rect.x + this.spriteAnim.rect.width) > backGroundWidth) {
+                    this.vx = -this.vx;
+                }
+                if (this.spriteAnim.rect.x < 0) {
+                    this.vx = -this.vx;
                 }
             }
             break;
@@ -42,7 +37,6 @@ Airship.update = function (deltaTime) {
             break;
     }
 };
-
 
 Airship.applyDamage = function (amount) {
     if (this.state == States.INVULNERABLE) {
@@ -70,7 +64,5 @@ Airship.applyDamage = function (amount) {
 };
 
 
-Airship.attack = function (deltaTime)
-{
 
-};
+
