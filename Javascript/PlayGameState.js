@@ -6,6 +6,13 @@ var airShipYPos = 0;
 var ballistaXPos = 0;
 var ballistaYPos = 0;
 
+var enemylist = 
+{
+	airship: 0,
+	ballista: 1,
+	flybeast: 2,
+};
+
 var PlayGameState =
 {
     canvasWidth: 0,
