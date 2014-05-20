@@ -20,10 +20,14 @@ Airship.update = function (deltaTime) {
             {
                 this.translate(this.vx, 0.0);
 
-                if ((this.spriteAnim.rect.x + this.spriteAnim.rect.width) > backGroundWidth) {
+                if ((this.spriteAnim.rect.x + this.spriteAnim.rect.width) > backGroundWidth)
+                {
+                    this.spriteAnim.startFrame = 8;
                     this.vx = -this.vx;
                 }
-                if (this.spriteAnim.rect.x < 0) {
+                if (this.spriteAnim.rect.x < 0)
+                {
+                    this.spriteAnim.startFrame = 9;
                     this.vx = -this.vx;
                 }
             }

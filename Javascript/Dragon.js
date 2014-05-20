@@ -26,10 +26,12 @@ Dragon.update = function (deltaTime)
 
             if ((this.spriteAnim.rect.x + this.spriteAnim.rect.width) > backGroundWidth)
             {
+                this.spriteAnim.startFrame = 0;
                 this.vx = -this.vx;
             }
             if (this.spriteAnim.rect.x < 0)
             {
+                this.spriteAnim.startFrame = 4;
                 this.vx = -this.vx;
             } 
         }

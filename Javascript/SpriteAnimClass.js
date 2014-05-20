@@ -33,7 +33,7 @@ var SpriteAnimClass =
 	startFrame: 0,
 	currentFrame : 0,
 	numFrames: 0,
-	frameRate: 64, //number of milliseconds between frame switches
+	frameRate: 32, //number of milliseconds between frame switches
 	loop: true,
 	isPlaying: false,
 	visible: true,

@@ -67,7 +67,7 @@ var PlayGameState =
 	    this.dragonXPos = x;
 	    this.dragonYPos = y;
 	    this.dragon = Object.create(Dragon);
-	    this.dragon.init(this.assets[atlas], this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight, 0, 4, 1000, this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight);
+	    this.dragon.init(this.assets[atlas], this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight, 4, 4, 1000, this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight);
 	    this.dragon.spriteAnim.play(true);
 	    this.gameObjects.push(this.dragon);
 	    ++enemiesRemaining;
