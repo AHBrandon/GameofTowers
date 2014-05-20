@@ -3,6 +3,8 @@ var dragonXPos = 0;
 var dragonYPos = 0;
 var airShipXPos = 0;
 var airShipYPos = 0;
+var ballistaXPos = 0;
+var ballistaYPos = 0;
 
 var PlayGameState =
 {
@@ -10,23 +12,36 @@ var PlayGameState =
     canvasHeight: 0,
     assets: undefined,
     dragon: undefined,
+    airShip: undefined,
+    ballista: undefined,
+    fireBallList: undefined,
 
-    init: function (canvasWidth, canvasHeight, assets, gameState, bulletList) 
+    init: function (canvasWidth, canvasHeight, assets, gameState, bulletList, fireBallList) 
 	{
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.assets = assets;
 		this.gameState = gameState;
 		this.bulletList = bulletList;
+		this.fireBallList = fireBallList;
 		t_countdown.time = 5;
 		t_countdown.start();
 		this.gameObjects = new Array();
 		this.createAirShip(800, 100);
 		this.createDragon(205, 300);
 		this.createDragon(395, 200);
-
+		this.createBallista(181, 450);
     },
-  
+    
+    updateDragonAttack: function () 
+    {
+        var newFireBall = Object.create(FireBall);
+
+        newFireBall.init(this.assets[fireBallImage], dragonXPos, dragonYPos, fireBallWidth, fireBallHeight, 1, 1,
+                        100, castleXPos, castleYPos, fireBallWidth, fireBallHeight);
+        this.fireBallList.push(newFireBall);
+    },
+
 	addBullet: function (wizardXPos, wizardYPos, mousePos)
     {
         var newBullet = Object.create(Bullet);
@@ -68,7 +83,15 @@ var PlayGameState =
 	    ++enemiesRemaining;
 	},
 
-
+	createBallista: function (x, y) {
+	    this.ballistaXPos = x;
+	    this.ballistaYPos = y;
+	    this.ballista = Object.create(Ballista);
+	    this.ballista.init(this.assets[atlas], this.ballistaXPos, this.ballistaYPos, ballistaWidth, ballistaHeight, 19, 1, 1000, this.ballistaXPos, this.ballistaYPos, ballistaWidth, ballistaHeight);
+	    this.ballista.spriteAnim.play(true);
+	    this.gameObjects.push(this.ballista);
+	    ++enemiesRemaining;
+	},
 
 	checkCollision: function() 
 	{

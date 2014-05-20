@@ -47,6 +47,8 @@ var dragonWidth = 96;
 var dragonHeight = 86;
 var airShipWidth = 96;
 var airShipHeight = 97;
+var ballistaWidth = 96;
+var ballistaHeight = 97;
 
 var dragonSpriteAnimHeight = 134;
 
