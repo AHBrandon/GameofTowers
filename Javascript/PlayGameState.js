@@ -67,7 +67,7 @@ var PlayGameState =
 	    this.dragonXPos = x;
 	    this.dragonYPos = y;
 	    this.dragon = Object.create(Dragon);
-	    this.dragon.init(this.assets[atlas], this.dragonXPos, this.dragonYPos, dragonWidth, dragonHeight, 0, 4, 1000, this.dragonXPos, this.dragonYPos, dragonWidth, dragonHeight);
+	    this.dragon.init(this.assets[atlas], this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight, 0, 4, 1000, this.dragonXPos, this.dragonYPos, spriteWidth, spriteHeight);
 	    this.dragon.spriteAnim.play(true);
 	    this.gameObjects.push(this.dragon);
 	    ++enemiesRemaining;
@@ -77,7 +77,7 @@ var PlayGameState =
 	    this.airShipXPos = x;
 	    this.airShipYPos = y;
 	    this.airShip = Object.create(Airship);
-	    this.airShip.init(this.assets[atlas], this.airShipXPos, this.airShipYPos, airShipWidth, airShipHeight, 16, 1, 1000, this.airShipXPos, this.airShipYPos, airShipWidth, airShipHeight);
+	    this.airShip.init(this.assets[atlas], this.airShipXPos, this.airShipYPos, spriteWidth, spriteHeight, 9, 1, 1000, this.airShipXPos, this.airShipYPos, spriteWidth, spriteHeight);
 	    this.airShip.spriteAnim.play(true);
 	    this.gameObjects.push(this.airShip);
 	    ++enemiesRemaining;
@@ -87,7 +87,7 @@ var PlayGameState =
 	    this.ballistaXPos = x;
 	    this.ballistaYPos = y;
 	    this.ballista = Object.create(Ballista);
-	    this.ballista.init(this.assets[atlas], this.ballistaXPos, this.ballistaYPos, ballistaWidth, ballistaHeight, 19, 1, 1000, this.ballistaXPos, this.ballistaYPos, ballistaWidth, ballistaHeight);
+	    this.ballista.init(this.assets[atlas], this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight, 11, 1, 1000, this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight);
 	    this.ballista.spriteAnim.play(true);
 	    this.gameObjects.push(this.ballista);
 	    ++enemiesRemaining;

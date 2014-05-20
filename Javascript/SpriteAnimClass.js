@@ -14,7 +14,7 @@ var SpriteAnimClass =
 			 
 	frameWidth:384, //the frame width will be the same width in the source image
 					//as the width of the displayed anim on the canvas (in pixels)
-	frameHeight:466,//the frame height will be the same height in the source image
+	frameHeight:315,//the frame height will be the same height in the source image
 					//as the height of the displayed anim on the canvas (in pixels)
 	
 	//half the width and height as the frame width / height
@@ -23,7 +23,7 @@ var SpriteAnimClass =
 	
 	//number of frames wide / high in the sprite sheet (image)
 	framesWide: 4,
-	framesHigh: 5,
+	framesHigh: 3,
 	
 	imageWidth: 0,
 	imageHeight:0,

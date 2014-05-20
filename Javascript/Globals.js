@@ -43,12 +43,8 @@ var castleYPos = 632;
 var atlas = 4;
 var atlasWidth = 384;
 var atlasHeight = 466;
-var dragonWidth = 96;
-var dragonHeight = 86;
-var airShipWidth = 96;
-var airShipHeight = 97;
-var ballistaWidth = 96;
-var ballistaHeight = 97;
+var spriteWidth = 96;
+var spriteHeight = 105;
 
 var dragonSpriteAnimHeight = 134;
 
