@@ -96,7 +96,7 @@ $(document).ready(function ()
     creditsImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(creditsImage);
 
-    var music = new Audio("Assets/The Rains of Castamere Meets Metal.mp3");
+    var music = new Audio("Assets/music.mp3");
     music.addEventListener('ended', function () {
         this.currentTime = 0;
         this.play();

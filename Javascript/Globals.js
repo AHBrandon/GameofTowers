@@ -26,7 +26,7 @@ var bulletImage=2;
 var bulletWidth = 17;
 var bulletHeight = 18;
 
-var fireballImage=5;
+var fireballImage = 5;
 var fireBallWidth = 55;
 var fireBallHeight = 77;
 

@@ -3,6 +3,7 @@
 var Dragon = Object.create(GameObjectClass);
 Dragon.baseInit = Dragon.init;
 
+var fireBallList = [];
 Dragon.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
 				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
 {
@@ -44,8 +45,20 @@ Dragon.update = function (deltaTime)
 
             break;
     }
+   
+  
+   // var interval = setInterval(onInterval, 3000);	//every three seconds
 };
+/*
+onInterval = function ()
+{
+    var newFireBall = Object.create(FireBall);
 
+    newFireBall.init(this.assets[5], dragonXPos, dragonYPos, fireBallWidth, fireBallHeight, 1, 1,
+                    100, castleXPos, castleYPos, fireBallWidth, fireBallHeight);
+    this.fireBallList.push(newFireBall);
+}
+*/
 Dragon.applyDamage = function (amount) {
     if (this.state == States.INVULNERABLE) {
         console.log("Can't touch this!!! Enemy invulnerable");
