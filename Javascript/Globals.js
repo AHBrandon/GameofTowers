@@ -6,6 +6,13 @@ var mousePos =
 	y: 0,
 };
 
+var arrowXTarget = 750;
+var arrowYTarget = 632;
+var bombXTarget = 710;
+var bombYTarget = 632;
+var fireBallXTarget = 700;
+var fireBallYTarget = 632;
+
 var UP = 38;
 var DOWN = 40;
 var RIGHT = 39;
@@ -45,6 +52,14 @@ var atlasWidth = 384;
 var atlasHeight = 466;
 var spriteWidth = 96;
 var spriteHeight = 105;
+
+var bomb = 16;
+var bombWidth = 60;
+var bombHeight = 60;
+
+var boltImage = 17;
+var boltWidth = 55;
+var boltHeight = 55;
 
 var dragonSpriteAnimHeight = 134;
 

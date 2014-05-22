@@ -1,72 +1,31 @@
 // JavaScript source code
-var Enemy = Object.create(Character);
+var Enemy = Object.create(GameObjectClass);
 Enemy.baseInit = Enemy.init;
 Enemy.state = undefined;
 Enemy.isPlaying = true;
 Enemy.loop = true;
 Enemy.Attack_timer = 0;
+Enemy.attack = false;
 
 Enemy.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				           frameRate, collisionWidth, collisionHeight, targetX, targetY) {
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
+{
     this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				  frameRate, collisionWidth, collisionHeight, targetX, targetY);
+				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
 
     this.spriteAnim = Object.create(SpriteAnimClass);
     this.spriteAnim.init(image, x, y, frameWidth, frameHeight, startFrame, numFrames, 1000, 0, 0);
     this.collisionRect = Object.create(RectClass);
     this.collisionRect.init(x, y, collisionWidth, collisionHeight, 0);
-
-    this.state = State.DEFAULT;
     this.health = 0;
+    this.state = States.DEFAULT;
+    this.image = image;
+    this.inputDirection = Object.create(VectorClass);
+    this.inputDirection.x = 0;
+    this.inputDirection.y = 0;
+    this.vx = 1;
 };
 
-
-Enemy.update = function (deltaTime)
-{
-
-    switch (this.state)
-    {
-        case States.DEFAULT:
-            {
-                if (this.isPlaying) {
-                    this.currentFrame++;
-                    this.x += vx;
-
-                    if (this.x > CANVAS_WIDTH)
-                    {
-                        vx = -vx;
-                    }
-                    if (this.x < 0) {
-                        vx = -vx;
-                    }
-
-                    if (this.currentFrame >= this.numFrames)
-                    {
-                        if (this.loop)
-                        {
-                            this.currentFrame = 0;
-                        }
-                        else {
-                            this.isPlaying = false;
-                            this.currentFrame--;
-                        }
-                    }
-
-                    var self = this;
-                    setTimeout(function () { self.updateAnimation(); }, this.frameRate);
-
-                }
-            }
-            break;
-      
-        case States.DEAD:
-            {
-                //remove the enemy from the array list.
-            }
-
-            break;
-    }
-};
 
 Enemy.setDefaultState = function ()
 {
@@ -124,7 +83,48 @@ Enemy.right = function ()
     return this.spriteAnim.rect.x + this.spriteAnim.rect.width;
 };
 
-Enemy.bottom = function ()
-{
+Enemy.bottom = function () {
     return this.spriteAnim.rect.y + this.spriteAnim.rect.height;
-}
+};
+
+Enemy.update = function (deltaTime) {
+
+    switch (this.state) {
+        case States.DEFAULT:
+            {
+                if (this.isPlaying) {
+                    this.currentFrame++;
+                    this.x += vx;
+
+                    if (this.x > CANVAS_WIDTH) {
+                        vx = -vx;
+                    }
+                    if (this.x < 0) {
+                        vx = -vx;
+                    }
+
+                    if (this.currentFrame >= this.numFrames) {
+                        if (this.loop) {
+                            this.currentFrame = 0;
+                        }
+                        else {
+                            this.isPlaying = false;
+                            this.currentFrame--;
+                        }
+                    }
+
+                    var self = this;
+                    setTimeout(function () { self.updateAnimation(); }, this.frameRate);
+
+                }
+            }
+            break;
+
+        case States.DEAD:
+            {
+                //remove the enemy from the array list.
+            }
+
+            break;
+    }
+};

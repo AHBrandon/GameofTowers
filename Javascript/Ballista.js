@@ -1,17 +1,6 @@
-var Ballista = Object.create(GameObjectClass);
-Ballista.baseInit = Ballista.init;
-
-Ballista.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight) {
-    this.state = States.DEFAULT;
-    this.image = image;
-    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
-    this.inputDirection = Object.create(VectorClass);
-    this.inputDirection.x = 0;
-    this.inputDirection.y = 0;
-    this.vx = 1;
-};
+var Ballista = Object.create(Enemy);
+var arrowList = new Array();
+Ballista.interval = undefined;
 
 Ballista.update = function (deltaTime) {
 
@@ -29,6 +18,14 @@ Ballista.update = function (deltaTime) {
 
             break;
     }
+    if (this.interval === undefined) {
+        var self = this;
+        this.interval = setInterval(function () { self.setAttack(); }, 1000);	//every three seconds
+    }
+};
+
+Ballista.setAttack = function () {
+    this.attack = true;
 };
 
 Ballista.applyDamage = function (amount) {

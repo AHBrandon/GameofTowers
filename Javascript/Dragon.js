@@ -1,26 +1,13 @@
 // JavaScript source code
 // JavaScript source code
-var Dragon = Object.create(GameObjectClass);
-Dragon.baseInit = Dragon.init;
-
-var fireBallList = [];
-Dragon.init = function (image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight)
-{
-    this.state = States.DEFAULT;
-    this.image = image;
-    this.baseInit(image, x, y, frameWidth, frameHeight, startFrame, numFrames,
-				   frameRate, collisionX, collisionY, collisionWidth, collisionHeight);
-    this.inputDirection = Object.create(VectorClass);
-    this.inputDirection.x = 0;
-    this.inputDirection.y = 0;
-    this.vx = 1;
-};
+var Dragon = Object.create(Enemy);
+var fireBallList = new Array();
+Dragon.interval = undefined;
 
 Dragon.update = function (deltaTime)
 {
-
-    switch (this.state) {
+    switch (this.state)
+    {
         case States.DEFAULT:
         {
             this.translate(this.vx,0.0);
@@ -43,22 +30,21 @@ Dragon.update = function (deltaTime)
             //remove the enemy from the array list.
         }
 
-            break;
+        break;
     }
    
-  
-   // var interval = setInterval(onInterval, 3000);	//every three seconds
+    if (this.interval === undefined)
+    {
+        var self = this;
+        this.interval = setInterval(function () { self.setAttack(); }, 4000);	//every three seconds
+    }
 };
-/*
-onInterval = function ()
-{
-    var newFireBall = Object.create(FireBall);
 
-    newFireBall.init(this.assets[5], dragonXPos, dragonYPos, fireBallWidth, fireBallHeight, 1, 1,
-                    100, castleXPos, castleYPos, fireBallWidth, fireBallHeight);
-    this.fireBallList.push(newFireBall);
-}
-*/
+Dragon.setAttack = function ()
+{
+    this.attack = true;
+};
+
 Dragon.applyDamage = function (amount) {
     if (this.state == States.INVULNERABLE) {
         console.log("Can't touch this!!! Enemy invulnerable");
