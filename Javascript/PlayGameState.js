@@ -313,12 +313,21 @@ var PlayGameState =
 			t_countdown.stop();
 			
         }
-     	
-	if ((enemiesRemaining + enemiesKilled) < this.Level)
-	{
-		//draw more enemies.
+		
+		if (health <= 0)
+		{
+			health = 0;
+			this.gameState = States.LOSS;
+			var currState = Object.create(LossStateClass);
+			currState.init(CANVAS_WIDTH, CANVAS_HEIGHT);
 			
-	}
+		}
+     	
+		if ((enemiesRemaining + enemiesKilled) < this.Level)
+		{
+			//draw more enemies.
+				
+		}
 		
         this.checkCollision();
         
