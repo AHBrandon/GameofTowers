@@ -286,19 +286,21 @@ var PlayGameState =
 	        }
 	    }
 
-	    //check collision on fireballs to castle
-        /*
+	    //check collision on fireballs to castle     
 	    for (var k = 0; k < this.fireBallList.length; ++k)
 	    {
-	        if (this.fireBallList[k].x >= castleWidth && this.fireBallList[k].x >= castleHeight)
+	        if ((this.fireBallList[k].spriteAnim.rect.x > castleXPos) && (this.fireBallList[k].spriteAnim.rect.x < (castleXPos + castleWidth)))
 	        {
-	            this.fireBallList.splice(k, 1);
-	            k--;
-	            health = health - 5;
-	            console.log("hit");
+	            if ((this.fireBallList[k].spriteAnim.rect.y > castleYPos) && (this.fireBallList[k].spriteAnim.rect.y < (castleYPos + castleHeight)))
+	            {
+	                this.fireBallList.splice(k, 1);
+	                k--;
+	                health = health - 100;
+	                console.log("hit");
+	            }
 	        }
 	    }
-        */
+        
     },
 
     update: function (deltaTime, MouseEvent, currContext) 
@@ -316,10 +318,11 @@ var PlayGameState =
 		
 		if (health <= 0)
 		{
-			health = 0;
-			this.gameState = States.LOSS;
-			var currState = Object.create(LossStateClass);
-			currState.init(CANVAS_WIDTH, CANVAS_HEIGHT);
+	
+		    health = 0;
+		    currState = Object.create(LossStateClass);
+			gameState = States.LOSS;
+			currState.init(backGroundWidth, backGroundHeight, this.assets);
 			
 		}
      	

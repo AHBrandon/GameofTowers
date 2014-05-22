@@ -6,6 +6,9 @@ var mousePos =
 	y: 0,
 };
 
+var currState;
+var gameState;
+
 var arrowXTarget = 750;
 var arrowYTarget = 632;
 var bombXTarget = 710;

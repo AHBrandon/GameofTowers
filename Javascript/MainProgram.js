@@ -130,8 +130,9 @@ $(document).ready(function ()
 
     var canvases = new Array();
 	
-    var currState = Object.create(SplashScreenStateClass);
-    var gameState = States.SPLASH;
+    currState = Object.create(SplashScreenStateClass);
+    gameState = States.SPLASH;
+
     currState.init(0, canvasWidth, canvasHeight, assetsToLoad);
 	
     var previousTime = Date.now();
@@ -295,6 +296,7 @@ $(document).ready(function ()
                 }
                 break;
 
+          
             case States.GAME:
 			
 				currState.update(deltaTime, MouseEvent, context);
