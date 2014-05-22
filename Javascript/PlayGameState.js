@@ -46,6 +46,8 @@ var PlayGameState =
 		//this.createDragon(395, 200);
 		//this.createBallista(181, 450);
 		
+		health = 100;
+		
 		while (enemiesRemaining < 10)
 		{
 			var self = this;
@@ -340,6 +342,14 @@ var PlayGameState =
 		{
 	
 		    health = 0;
+			fireBallList.length = 0;
+			bombList.length = 0;
+			arrowList.length = 0;
+			this.bulletList.length = 0;
+			this.dragonArray.length = 0;
+			this.airShipArray.length = 0;
+			this.ballistaArray.length = 0;
+			
 		    currState = Object.create(LossStateClass);
 			gameState = States.LOSS;
 			currState.init(backGroundWidth, backGroundHeight, this.assets);
