@@ -1,24 +1,21 @@
-var MainMenuStateClass = 
+var LossStateClass =
 {
-	canvasWidth : 0,
-	canvasHeight : 0,
-	assets : undefined,
-	
-	init : function(canvasWidth, canvasHeight, assets)
-	{
-		this.canvasWidth = canvasWidth;
-		this.canvasHeight = canvasHeight;
-		this.assets = assets;
-	},
-	
-	update : function(deltaTime, keysPressed)
-	{
-		console.log("Loss Screen Update");
-	},
-	
-	render : function(currContext)
-	{
-		currContext.fillStyle = "rgb(0,0,0)"
-		currContext.fillRect(0,0, this.canvasWidth, this.canvasHeight);
-	}
+    canvasWidth: 0,
+    canvasHeight: 0,
+    assets: undefined,
+
+    init: function (canvasWidth, canvasHeight, assets) {
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        this.assets = assets;
+    },
+
+    update: function (deltaTime, MouseEvent) {
+        //onmousedown, mousepos collisioncheck with image position
+    },
+
+    render: function (currContext) {
+        currContext.drawImage(this.assets[lossScreen], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
+        currContext.drawImage(this.assets[mainMenuImage], 0, 0, menuTextWidth, menuTextHeight, menuXPos, menuYPos, menuTextWidth, menuTextHeight);
+    },
 };

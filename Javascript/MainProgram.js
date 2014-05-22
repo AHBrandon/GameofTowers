@@ -104,6 +104,11 @@ $(document).ready(function ()
     boltImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(boltImage);
 
+    var lossImage = new Image();
+    lossImage.src = "Assets/BGs/lossbackground.png";
+    lossImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(lossImage);
+
     var music = new Audio("Assets/music.mp3");
     music.addEventListener('ended', function () {
         this.currentTime = 0;

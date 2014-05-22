@@ -61,6 +61,8 @@ var boltImage = 17;
 var boltWidth = 55;
 var boltHeight = 55;
 
+var lossScreen = 18;
+
 var dragonSpriteAnimHeight = 134;
 
 var timeXPos = 7;
