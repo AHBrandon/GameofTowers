@@ -10,8 +10,19 @@ var LossStateClass =
         this.assets = assets;
     },
 
-    update: function (deltaTime, MouseEvent) {
+    update: function (deltaTime, MouseEvent) 
+	{
         //onmousedown, mousepos collisioncheck with image position
+		if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth)))
+			{
+				if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight)))
+				{
+					currState = Object.create(MainMenuStateClass);
+					gameState = States.TITLE;
+					currState.init(backGroundWidth, backGroundHeight, this.assets);
+				}
+			}
+                
     },
 
     render: function (currContext) {
