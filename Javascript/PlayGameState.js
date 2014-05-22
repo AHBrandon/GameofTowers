@@ -220,7 +220,7 @@ var PlayGameState =
                     j--;
                     this.bulletList.splice(i, 1);
                     i--;
-					score = score + 5;
+					score = score + 10;
                     --enemiesRemaining;
 					enemiesKilled++;
                     
@@ -268,7 +268,7 @@ var PlayGameState =
 	                n--;
 	                this.bulletList.splice(i, 1);
 	                i--;
-					score = score + 5;
+					score = score + 3;
 	                --enemiesRemaining;
 					enemieskilled++;
 	                
