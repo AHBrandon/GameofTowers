@@ -290,7 +290,7 @@ var PlayGameState =
         /*
 	    for (var k = 0; k < this.fireBallList.length; ++k)
 	    {
-	        if (this.fireBallList[k].x == castleWidth && this.fireBallList[k].x == castleHeight)
+	        if (this.fireBallList[k].x >= castleWidth && this.fireBallList[k].x >= castleHeight)
 	        {
 	            this.fireBallList.splice(k, 1);
 	            k--;
