@@ -3,8 +3,6 @@ $(document).ready(function ()
 {
     var canvas = document.getElementById("Canvas");
     var context = canvas.getContext("2d");
-    //var canvasWidth = canvas.width;
-    //var canvasHeight = canvas.height;
     var OUTPUT_HEIGHT = 20;
     var CANVAS_WIDTH = 1440;
     var CANVAS_HEIGHT = 900;
@@ -96,7 +94,17 @@ $(document).ready(function ()
     creditsImage.addEventListener("load", assetLoaded, false);
     assetsToLoad.push(creditsImage);
 
-    var music = new Audio("Assets/The Rains of Castamere Meets Metal.mp3");
+    var bombImage = new Image();
+    bombImage.src = "Assets/Sprites/bomb.png";
+    bombImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(bombImage);
+
+    var boltImage = new Image();
+    boltImage.src = "Assets/Sprites/bolt.png";
+    boltImage.addEventListener("load", assetLoaded, false);
+    assetsToLoad.push(boltImage);
+
+    var music = new Audio("Assets/music.mp3");
     music.addEventListener('ended', function () {
         this.currentTime = 0;
         this.play();
@@ -121,7 +129,6 @@ $(document).ready(function ()
     var gameState = States.SPLASH;
     currState.init(0, canvasWidth, canvasHeight, assetsToLoad);
 	
-	
     var previousTime = Date.now();
 
     window.onfocus = function ()
@@ -131,31 +138,18 @@ $(document).ready(function ()
     };
     
     addEventListener("click", mouseDownHandler, false);
-    //addEventListener("mousemove", mouseMove, false);
     addEventListener("click", mouseDown, false);
-   
-    var player = Object.create(Player);
 
     var keysPressed = new Array();
+
     window.addEventListener("keydown", function (event)
     {
-        if (event.keyCode < 43)
-        {
-            event.preventDefault();
-        }
-        if (keysPressed.indexOf(event.keyCode) === -1)
-        {
-            keysPressed.push(event.keyCode);
-        }
+       
     }, false);
 
     window.addEventListener("keyup", function (event) 
     {
-        var index = keysPressed.indexOf(event.keyCode);
-        if (index != -1) 
-	{
-            keysPressed.splice(index, 1);
-        }
+        
     }, false);
 
     function mouseDownHandler(event) 
@@ -198,15 +192,6 @@ $(document).ready(function ()
     }
 
     buildCanvases();
-
-    function addBullet(wizardXPos, wizardYPos, mousePos)
-    {
-        var newBullet = Object.create(Bullet);
-
-        newBullet.init(imgBullet, wizardXPos, wizardYPos, bulletWidth, bulletHeight, 1, 1,
-                        100, bulletWidth, bulletHeight, mousePos.x, mousePos.y);
-        bulletList.push(newBullet);
-    }
 
     function gameLoop() 
 	{
@@ -258,7 +243,7 @@ $(document).ready(function ()
                     {
                         currState = Object.create(PlayGameState);
                         gameState = States.START_GAME_DELAY;
-                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad, gameState, bulletList);
+                        currState.init(CANVAS_WIDTH, CANVAS_HEIGHT, assetsToLoad, gameState, bulletList, fireBallList, bombList, arrowList);
                     }
                 }
 				
@@ -306,38 +291,10 @@ $(document).ready(function ()
                 break;
 
             case States.GAME:
-				//update your game object
-				//this is where the addBullet function will be called. mousePos.x and mousePos.y can be used to capture 
-				//position of mouse clicks.
 			
-                //addEventListener("click", addBullet(wizardXPos, wizardYPos, mousePos), false);
-                //updateWizardAttack();
 				currState.update(deltaTime, MouseEvent, context);
                 break;
             
-        }
-    }
-
-    
-
-    function updateDragonAttack() {
-        for (var i = 0; i < fireBallList.length; ++i) {
-            fireBallList[i].updateFireBall(imgDragon);
-            context.drawImage(imgFireBall, imgDragon.x, imgDragon.y, fireBallWidth, fireBallHeight, fireBallList[i].x, fireBallList[i].y, fireBallWidth, fireBallHeight);
-
-        }
-    }
-
-    function checkCollision() {
-        for (var i = 0; i < bulletList.length; ++i) {
-            for (var j = 0; j < fireBallList.length; ++j) {
-                if (AARectToRectCollision(bulletList[i].collisionRect, fireBallList[j].collisionRect)) {
-                    fireBallList.splice(j, 1);
-                    j--;
-                    bulletList.splice(i, 1);
-                    i--;
-                }
-            }
         }
     }
 
