@@ -295,12 +295,32 @@ var PlayGameState =
 	            {
 	                this.fireBallList.splice(k, 1);
 	                k--;
-	                health = health - 100;
-	                console.log("hit");
+	                health = health - 5;
 	            }
 	        }
 	    }
         
+	    //check collision on arrows to castle     
+	    for (var o = 0; o < this.arrowList.length; ++o) {
+	        if ((this.arrowList[o].spriteAnim.rect.x > castleXPos) && (this.arrowList[o].spriteAnim.rect.x < (castleXPos + castleWidth))) {
+	            if ((this.arrowList[o].spriteAnim.rect.y > castleYPos) && (this.arrowList[o].spriteAnim.rect.y < (castleYPos + castleHeight))) {
+	                this.arrowList.splice(o, 1);
+	                o--;
+	                health = health - 1;
+	            }
+	        }
+	    }
+
+	    //check collision on bombs to castle     
+	    for (var l = 0; l < this.bombList.length; ++l) {
+	        if ((this.bombList[l].spriteAnim.rect.x > castleXPos) && (this.bombList[l].spriteAnim.rect.x < (castleXPos + castleWidth))) {
+	            if ((this.bombList[l].spriteAnim.rect.y > castleYPos) && (this.bombList[l].spriteAnim.rect.y < (castleYPos + castleHeight))) {
+	                this.bombList.splice(l, 1);
+	                l--;
+	                health = health - 3;
+	            }
+	        }
+	    }
     },
 
     update: function (deltaTime, MouseEvent, currContext) 
