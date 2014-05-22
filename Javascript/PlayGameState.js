@@ -13,6 +13,9 @@ var enemylist =
 	flybeast: 2,
 };
 
+var lvlcap = {10, 20, 30, 40};
+var ispausegen = false;
+
 var PlayGameState =
 {
     canvasWidth: 0,
@@ -34,10 +37,18 @@ var PlayGameState =
 		t_countdown.time = 5;
 		t_countdown.start();
 		this.gameObjects = new Array();
-		this.createAirShip(800, 100);
-		this.createDragon(205, 300);
-		this.createDragon(395, 200);
-		this.createBallista(181, 450);
+		
+		
+		while (enemiesRemaining < 10)
+		{
+			var self = this;
+			self.rgenemies();
+			
+		}
+		
+		//var self = this;
+		//var randomrg = setInterval(function() {self.rgenemies()}, 10000);
+		
     },
     
     updateDragonAttack: function () 
@@ -57,6 +68,45 @@ var PlayGameState =
                         100, mousePos.x, mousePos.y, bulletWidth, bulletHeight);
         this.bulletList.push(newBullet);
     },
+	
+	getRandomInt: function (min, max)
+	{
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	},
+	
+	rgenemies: function ()
+	{
+		var randomnumber=Math.floor(Math.random()*3);
+		console.log(randomnumber);
+		
+		switch(randomnumber)
+		{
+			case 0:
+			{
+				var randomy = this.getRandomInt( 10, 250);
+				this.createAirShip(10, randomy);
+				//add to enemy array				
+			}
+			break;
+			
+			case 1:
+			{
+				var randomy = this.getRandomInt( 10, 250);
+				this.createDragon(10, randomy);
+				//add to enemy array				
+			}
+			break;
+			
+			case 2:
+			{
+				//var randomy = this.getRandomInt( 10, 250);
+				this.createBallista(10, 430);
+				//add to enemy array				
+			}
+			break;
+			
+		}
+	},
 	
 	updateWizardAttack: function (currContext) 
 	{
@@ -128,6 +178,13 @@ var PlayGameState =
 			t_countdown.stop();
 			
         }
+		
+		if ((enemiesRemaining + enemiesKilled) < lvlcap[level])
+		{
+			//draw more enemies.
+			
+		}
+		
 
         this.checkCollision();
 

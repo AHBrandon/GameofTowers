@@ -55,6 +55,8 @@ var enemiesRemaining = 0;
 var enemiesRemainingXPos = 7;
 var enemiesRemainingYPos = 697;
 
+var enemiesKilled = 0;
+
 var health = 100;
 var healthXPos = 7;
 var healthYPos = 670;
