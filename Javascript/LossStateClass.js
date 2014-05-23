@@ -14,14 +14,23 @@ var LossStateClass =
 	{
         //onmousedown, mousepos collisioncheck with image position
 		if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth)))
+		{
+			if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight)))
 			{
-				if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight)))
-				{
-					currState = Object.create(MainMenuStateClass);
-					gameState = States.TITLE;
-					currState.init(backGroundWidth, backGroundHeight, this.assets);
-				}
+				currState = Object.create(MainMenuStateClass);
+				gameState = States.TITLE;
+				currState.init(backGroundWidth, backGroundHeight, this.assets);
 			}
+		}
+		
+		if (health <= 0)
+		{
+	
+		    health = 0;
+			fireBallList.length = 0;
+			bombList.length = 0;
+			arrowList.length = 0;
+		}
                 
     },
 

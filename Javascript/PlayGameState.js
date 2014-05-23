@@ -171,7 +171,7 @@ var PlayGameState =
 			
 			case 2:
 			{
-				var randomx = this.getRandomInt( 10, backGroundWidth)
+				var randomx = this.getRandomInt( 10, (backGroundWidth - spriteWidth));
 				console.log(randomx);
 				if (randomx < (castleXPos - (castleWidth/2)))
 				{
