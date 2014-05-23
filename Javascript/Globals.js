@@ -9,8 +9,8 @@ var mousePos =
 var currState;
 var gameState;
 
-var arrowXTarget = 750;
-var arrowYTarget = 632;
+var arrowXTarget = 60;
+var arrowYTarget = 375;
 var bombXTarget = 710;
 var bombYTarget = 632;
 var fireBallXTarget = 700;

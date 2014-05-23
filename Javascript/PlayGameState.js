@@ -16,7 +16,6 @@ var enemylist =
 
 var lvlcap = {Lvl01:10, Lvl02:20, Lvl03:30, Lvl04:40,};
 var Level = 1;
-var ispausegen = false;
 
 var PlayGameState =
 {
@@ -43,23 +42,15 @@ var PlayGameState =
 		this.dragonArray = new Array();
 		this.airShipArray = new Array();
 		this.ballistaArray = new Array();
-		//this.createAirShip(800, 100);
-		//this.createDragon(205, 300);
-		//this.createDragon(395, 200);
-		//this.createBallista(181, 450);
-		
+
 		health = 100;
 		rg_x = 0;
 		
-		while (enemiesRemaining < 10)
+		while (enemiesRemaining < 15)
 		{
 			var self = this;
 			self.rgenemies();
-		}
-			
-		//var self = this;
-		//var randomrg = setInterval(function() {self.rgenemies()}, 10000);
-		
+		}	
     },
     
     drawFireBall: function (x, y) 
@@ -171,15 +162,18 @@ var PlayGameState =
 			
 			case 2:
 			{
-				var randomx = this.getRandomInt( 10, (backGroundWidth - spriteWidth));
+			    var randomx = this.getRandomInt(10, (backGroundWidth - spriteWidth));
 				console.log(randomx);
-				if (randomx < (castleXPos - (castleWidth/2)))
+			    /*
+                  if (randomx < (castleXPos - (castleWidth/2)))
+                    {
+                     this.createBallista(randomx, (backGroundHeight - 85));
+                    }
+                */
+				if (randomx > (castleXPos + (castleWidth/2)))
 				{
-					this.createBallista(randomx, (backGroundHeight - 85));
-				}
-				else if (randomx > (castleXPos + (castleWidth/2)))
-				{
-					this.createBallista2(randomx, (backGroundHeight - 85));
+				    this.createBallista2(randomx, (backGroundHeight - 85));
+
 				}
 				//add to enemy array				
 			}
@@ -191,7 +185,7 @@ var PlayGameState =
     
 	rPowerUps: function ()
 	{
-	    var randomnumberP = Math.floor(Math.random() * 6);
+	    var randomnumberP = Math.floor(Math.random() * 9);
        // console.log(randomnumberP)
 	    if(randomnumberP == 5)
 	    {
