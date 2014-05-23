@@ -5,7 +5,7 @@ var airShipXPos = 0;
 var airShipYPos = 0;
 var ballistaXPos = 0;
 var ballistaYPos = 0;
-
+var rg_x;
 var enemylist = 
 {
 	airship: 0,
@@ -47,6 +47,7 @@ var PlayGameState =
 		//this.createBallista(181, 450);
 		
 		health = 100;
+		rg_x = 0;
 		
 		while (enemiesRemaining < 10)
 		{
@@ -133,14 +134,20 @@ var PlayGameState =
 	rgenemies: function ()
 	{
 		var randomnumber=Math.floor(Math.random()*3);
-		//console.log(randomnumber);
+		console.log(randomnumber);
 		
 		switch(randomnumber)
 		{
 			case 0:
 			{
 				var randomy = this.getRandomInt(10, 250);
-				this.createAirShip(10, randomy);
+				if (rg_x < backGroundWidth)
+				{
+					rg_x += 60;
+				}
+				else
+					rg_x = 0;
+				this.createAirShip(rg_x, randomy);
 				//add to enemy array				
 			}
 			break;
@@ -148,15 +155,30 @@ var PlayGameState =
 			case 1:
 			{
 				var randomy = this.getRandomInt(10, 250);
-				this.createDragon(10, randomy);
+				if (rg_x < backGroundWidth)
+				{
+					rg_x += 120;
+				}
+				else
+					rg_x = 0;
+				this.createDragon(rg_x, randomy);
+				
 				//add to enemy array				
 			}
 			break;
 			
 			case 2:
 			{
-				//var randomy = this.getRandomInt( 10, 250);
-				this.createBallista(10, 430);
+				var randomx = this.getRandomInt( 10, backGroundWidth)
+				console.log(randomx);
+				if (randomx < (castleXPos - (castleWidth/2)))
+				{
+					this.createBallista(randomx, (backGroundHeight - 85));
+				}
+				else if (randomx > (castleXPos + (castleWidth/2)))
+				{
+					this.createBallista2(randomx, (backGroundHeight - 85));
+				}
 				//add to enemy array				
 			}
 			break;
@@ -217,6 +239,17 @@ var PlayGameState =
 	    this.ballistaYPos = y;
 	    this.ballista = Object.create(Ballista);
 	    this.ballista.init(this.assets[atlas], this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight, 11, 1, 1000, this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight);
+	    this.ballista.spriteAnim.play(true);
+	    this.ballistaArray.push(this.ballista);
+	    ++enemiesRemaining;
+	},
+	
+	createBallista2: function (x, y)
+	{
+	    this.ballistaXPos = x;
+	    this.ballistaYPos = y;
+	    this.ballista = Object.create(Ballista);
+	    this.ballista.init(this.assets[atlas], this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight, 10, 1, 1000, this.ballistaXPos, this.ballistaYPos, spriteWidth, spriteHeight);
 	    this.ballista.spriteAnim.play(true);
 	    this.ballistaArray.push(this.ballista);
 	    ++enemiesRemaining;
