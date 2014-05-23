@@ -3,7 +3,7 @@ var arrowList = new Array();
 Ballista.interval = undefined;
 
 Ballista.update = function (deltaTime) {
-
+   
     switch (this.state) {
         case States.DEFAULT:
             {
@@ -18,9 +18,13 @@ Ballista.update = function (deltaTime) {
 
             break;
     }
-    if (this.interval === undefined) {
-        var self = this;
-        this.interval = setInterval(function () { self.setAttack(); }, 1000);	//every three seconds
+    if (this.interval === undefined)
+    {
+        if (gameState === States.GAME)
+        {
+            var self = this;
+            this.interval = setInterval(function () { self.setAttack(); }, 1000);
+        }
     }
 };
 

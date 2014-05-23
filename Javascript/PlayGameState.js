@@ -52,10 +52,8 @@ var PlayGameState =
 		{
 			var self = this;
 			self.rgenemies();
-				
 		}
 			
-		level = lvlcap.Lvl01;
 		//var self = this;
 		//var randomrg = setInterval(function() {self.rgenemies()}, 10000);
 		
@@ -170,10 +168,10 @@ var PlayGameState =
 	rPowerUps: function ()
 	{
 	    var randomnumberP = Math.floor(Math.random() * 6);
-        console.log(randomnumberP)
+       // console.log(randomnumberP)
 	    if(randomnumberP == 5)
 	    {
-	        console.log("powerup given");
+	       // console.log("powerup given");
 	        health = health + 25;	        
 	        powerUpText = powerUpText + 1;
 	    }
@@ -341,13 +339,13 @@ var PlayGameState =
 
     update: function (deltaTime, MouseEvent, currContext) 
 	{
-        if(t_countdown.time < 0)
-        {
+       if(t_countdown.time < 0)
+       {
             t_countdown.time = 0;
-            this.gameState = States.GAME;
+            gameState = States.GAME;
             var self = this;
             addEventListener("click", function () { self.addBullet(wizardXPos, wizardYPos, mousePos); }, false);
-			console.log("looping");
+			//console.log("looping");
 			t_countdown.stop();
 			
         }
@@ -423,7 +421,7 @@ var PlayGameState =
         currContext.fillText("Health Power Ups received: " + powerUpText, powerUpTextX, powerUpTextY);
         currContext.drawImage(this.assets[healthPowerUp], 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
         currContext.fillText("(+25 health)", 65, 840);
-		if(this.gameState == States.START_GAME_DELAY)
+		if(gameState == States.START_GAME_DELAY)
 		{
 			currContext.font = "72px Georgia";
 			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 500);
@@ -447,10 +445,5 @@ var PlayGameState =
 		for (var j = 0; j < this.ballistaArray.length; ++j) {
 		    this.ballistaArray[j].spriteAnim.render(currContext);
 		}
-		
-	    currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-	    currContext.stroke();
-
-	    //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
     }
 };

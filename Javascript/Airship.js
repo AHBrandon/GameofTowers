@@ -30,8 +30,11 @@ Airship.update = function (deltaTime) {
             break;
     }
     if (this.interval === undefined) {
-        var self = this;
-        this.interval = setInterval(function () { self.setAttack(); }, 3000);	//every three seconds
+        if (gameState === States.GAME)
+        {
+            var self = this;
+            this.interval = setInterval(function () { self.setAttack(); }, 3000);	
+        }
     }
 };
 
