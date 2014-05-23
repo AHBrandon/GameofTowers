@@ -134,12 +134,12 @@ var PlayGameState =
 			case 0:
 			{
 				var randomy = this.getRandomInt(10, 250);
-				if (rg_x < backGroundWidth)
+				if (rg_x < backGroundWidth - (spriteWidth + 50))
 				{
 					rg_x += 60;
 				}
 				else
-					rg_x = 0;
+			    rg_x = 0;
 				this.createAirShip(rg_x, randomy);
 				//add to enemy array				
 			}
@@ -148,12 +148,12 @@ var PlayGameState =
 			case 1:
 			{
 				var randomy = this.getRandomInt(10, 250);
-				if (rg_x < backGroundWidth)
+				if (rg_x < backGroundWidth - (spriteWidth + 50))
 				{
-					rg_x += 120;
+				    rg_x += 120;
 				}
 				else
-					rg_x = 0;
+				rg_x = 0;
 				this.createDragon(rg_x, randomy);
 				
 				//add to enemy array				
@@ -162,7 +162,7 @@ var PlayGameState =
 			
 			case 2:
 			{
-			    var randomx = this.getRandomInt(10, (backGroundWidth - spriteWidth));
+			    var randomx = this.getRandomInt(10, (backGroundWidth - (spriteWidth + 50)));
 				console.log(randomx);
 			    /*
                   if (randomx < (castleXPos - (castleWidth/2)))
@@ -185,9 +185,9 @@ var PlayGameState =
     
 	rPowerUps: function ()
 	{
-	    var randomnumberP = Math.floor(Math.random() * 9);
+	    var randomnumberP = Math.floor(Math.random() * 14);
        // console.log(randomnumberP)
-	    if(randomnumberP == 5)
+	    if(randomnumberP == 7)
 	    {
 	       // console.log("powerup given");
 	        health = health + 25;	        
@@ -384,6 +384,8 @@ var PlayGameState =
 		{
 			//draw more enemies.
 				enemy_spawn.time = 1;
+				this.rgenemies();
+				this.rgenemies();
 				this.rgenemies();
 		}
 		
