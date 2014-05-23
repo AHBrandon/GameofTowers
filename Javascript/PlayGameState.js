@@ -1,4 +1,5 @@
 var t_countdown = Object.create(TimerClass);
+var enemy_spawn = Object.create(TimerClass);
 var dragonXPos = 0;
 var dragonYPos = 0;
 var airShipXPos = 0;
@@ -14,7 +15,7 @@ var enemylist =
 };
 
 var lvlcap = {Lvl01:10, Lvl02:20, Lvl03:30, Lvl04:40,};
-var level;
+var Level = 1;
 var ispausegen = false;
 
 var PlayGameState =
@@ -38,6 +39,7 @@ var PlayGameState =
 		this.fireBallList = fireBallList;
 		t_countdown.time = 3;
 		t_countdown.start();
+		enemy_spawn.time = 5;
 		this.dragonArray = new Array();
 		this.airShipArray = new Array();
 		this.ballistaArray = new Array();
@@ -294,7 +296,7 @@ var PlayGameState =
 	                i--;
 					score = score + 5;
 	                --enemiesRemaining;
-					enemieskilled++;
+					enemiesKilled++;
 					this.rPowerUps();
 	            }
 	        }
@@ -317,7 +319,7 @@ var PlayGameState =
 	                i--;
 					score = score + 3;
 	                --enemiesRemaining;
-					enemieskilled++;
+					enemiesKilled++;
 					this.rPowerUps();
 	            }
 	        }
@@ -379,9 +381,17 @@ var PlayGameState =
             var self = this;
             addEventListener("click", function () { self.addBullet(wizardXPos, wizardYPos, mousePos); }, false);
 			//console.log("looping");
+			enemy_spawn.start();
 			t_countdown.stop();
 			
         }
+		
+		if (enemy_spawn.time < 0)
+		{
+			//draw more enemies.
+				enemy_spawn.time = 1;
+				this.rgenemies();
+		}
 		
 		if (health <= 0)
 		{
@@ -401,11 +411,7 @@ var PlayGameState =
 			
 		}
      	
-		if ((enemiesRemaining + enemiesKilled) < this.Level)
-		{
-			//draw more enemies.
-				
-		}
+		
 		
         this.checkCollision();
         
@@ -449,7 +455,7 @@ var PlayGameState =
 		currContext.font = "20px Verdana";
         currContext.fillText("Health: " + health, healthXPos, healthYPos);
         currContext.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
-        currContext.fillText("Wave: " + wave, waveXPos, waveYPos);
+        currContext.fillText("Wave: " + Level, waveXPos, waveYPos);
         currContext.fillText("Score: " + score, scoreX, scoreY);
         currContext.fillText("Health Power Ups received: " + powerUpText, powerUpTextX, powerUpTextY);
         currContext.drawImage(this.assets[healthPowerUp], 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
