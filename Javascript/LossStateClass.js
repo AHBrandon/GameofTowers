@@ -13,7 +13,7 @@ var LossStateClass =
     update: function (deltaTime, MouseEvent) 
 	{
         //onmousedown, mousepos collisioncheck with image position
-		if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth)))
+		/*if ((mousePos.x > menuXPos) && (mousePos.x < (menuXPos + menuTextWidth)))
 		{
 			if ((mousePos.y > menuYPos) && (mousePos.y < (menuYPos + menuTextHeight)))
 			{
@@ -21,7 +21,7 @@ var LossStateClass =
 				gameState = States.TITLE;
 				currState.init(backGroundWidth, backGroundHeight, this.assets);
 			}
-		}
+		}*/
 		
 		if (health <= 0)
 		{
@@ -36,6 +36,6 @@ var LossStateClass =
 
     render: function (currContext) {
         currContext.drawImage(this.assets[lossScreen], 0, 0, backGroundWidth, backGroundHeight, 0, 0, backGroundWidth, backGroundHeight);
-        currContext.drawImage(this.assets[mainMenuImage], 0, 0, menuTextWidth, menuTextHeight, menuXPos, menuYPos, menuTextWidth, menuTextHeight);
+        //currContext.drawImage(this.assets[mainMenuImage], 0, 0, menuTextWidth, menuTextHeight, menuXPos, menuYPos, menuTextWidth, menuTextHeight);
     },
 };
