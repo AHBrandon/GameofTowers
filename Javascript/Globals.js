@@ -26,6 +26,8 @@ var PLAYER_FLASH_LENGTH = 3;
 var PLAYER_DEATH_TIME = 3;
 var PLAYER_DEAD_FRAME_INDEX;
 
+var healthPowerUp = 6;
+
 var wizardImage = 1;
 var wizardWidth = 51;
 var wizardHeight = 35;
@@ -88,6 +90,10 @@ var waveYPos = 724;
 var score = 0;
 var scoreX = 7;
 var scoreY = 751;
+
+var powerUpText = 0;
+var powerUpTextX = 7;
+var powerUpTextY = 778;
 
 var powerUpX = 7;
 var powerUpY = 806;

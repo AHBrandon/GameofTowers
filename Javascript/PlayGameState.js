@@ -135,13 +135,13 @@ var PlayGameState =
 	rgenemies: function ()
 	{
 		var randomnumber=Math.floor(Math.random()*3);
-		console.log(randomnumber);
+		//console.log(randomnumber);
 		
 		switch(randomnumber)
 		{
 			case 0:
 			{
-				var randomy = this.getRandomInt( 10, 250);
+				var randomy = this.getRandomInt(10, 250);
 				this.createAirShip(10, randomy);
 				//add to enemy array				
 			}
@@ -149,7 +149,7 @@ var PlayGameState =
 			
 			case 1:
 			{
-				var randomy = this.getRandomInt( 10, 250);
+				var randomy = this.getRandomInt(10, 250);
 				this.createDragon(10, randomy);
 				//add to enemy array				
 			}
@@ -164,6 +164,20 @@ var PlayGameState =
 			break;
 			
 		}
+	},
+
+    
+	rPowerUps: function ()
+	{
+	    var randomnumberP = Math.floor(Math.random() * 6);
+        console.log(randomnumberP)
+	    if(randomnumberP == 5)
+	    {
+	        console.log("powerup given");
+	        health = health + 25;	        
+	        powerUpText = powerUpText + 1;
+	    }
+	    
 	},
 	
 	updateWizardAttack: function (currContext) 
@@ -225,7 +239,7 @@ var PlayGameState =
 					score = score + 10;
                     --enemiesRemaining;
 					enemiesKilled++;
-                    
+					this.rPowerUps();
                 }
 	        }
 	        for (var k = 0; k < this.fireBallList.length; ++k)
@@ -250,7 +264,7 @@ var PlayGameState =
 					score = score + 5;
 	                --enemiesRemaining;
 					enemieskilled++;
-	                
+					this.rPowerUps();
 	            }
 	        }
 	        for (var l = 0; l < this.bombList.length; ++l) {
@@ -273,7 +287,7 @@ var PlayGameState =
 					score = score + 3;
 	                --enemiesRemaining;
 					enemieskilled++;
-	                
+					this.rPowerUps();
 	            }
 	        }
 	        for (var o = 0; o < this.arrowList.length; ++o) {
@@ -406,13 +420,15 @@ var PlayGameState =
         currContext.fillText("Enemies remaining: " + enemiesRemaining, enemiesRemainingXPos, enemiesRemainingYPos);
         currContext.fillText("Wave: " + wave, waveXPos, waveYPos);
         currContext.fillText("Score: " + score, scoreX, scoreY);
-
+        currContext.fillText("Health Power Ups received: " + powerUpText, powerUpTextX, powerUpTextY);
+        currContext.drawImage(this.assets[healthPowerUp], 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+        currContext.fillText("(+25 health)", 65, 840);
 		if(this.gameState == States.START_GAME_DELAY)
 		{
 			currContext.font = "72px Georgia";
-			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 200);
+			currContext.fillText("GAME STARTS IN " + t_countdown.time, 400, 500);
 		}
-
+        
 		this.updateDragonAttack(currContext);
 		this.updateWizardAttack(currContext);
 		this.updateBombAttack(currContext);
@@ -432,10 +448,8 @@ var PlayGameState =
 		    this.ballistaArray[j].spriteAnim.render(currContext);
 		}
 		
-	    //currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
-	    //currContext.stroke();
-
-	    // currContext.drawImage(imgDamage, 0, 0, powerUpWidth, powerUpHeight, powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+	    currContext.rect(powerUpX, powerUpY, powerUpWidth, powerUpHeight);
+	    currContext.stroke();
 
 	    //currContext.fillText("Time: " + timeCounter.time + " seconds", timeXPos, timeYPos);
     }
